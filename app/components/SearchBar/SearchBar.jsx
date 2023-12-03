@@ -16,7 +16,13 @@ const SearchBar = ({ onBarCodeScan }) => {
         (device) => device.kind === "videoinput"
       );
       console.log(availableVideoDevices);
-      alert(`video device array length :${availableVideoDevices.length}`);
+      let dataString = "";
+      availableVideoDevices.map((d) => {
+        dataString += `ID: ${d.deviceId} - ${d.label} | `;
+      });
+      alert(
+        `video device array length :${availableVideoDevices.length} ++ ${dataString}`
+      );
       setDeviceId[
         availableVideoDevices[availableVideoDevices.length - 1].deviceId
       ];
