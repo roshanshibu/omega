@@ -26,7 +26,7 @@ const Planning = () => {
         `video device array length :${availableVideoDevices.length} ++ ${dataString}`
       );
       setDeviceId(
-        availableVideoDevices[availableVideoDevices.length - 2].deviceId
+        availableVideoDevices[availableVideoDevices.length - 1].deviceId
       );
     });
   };
@@ -40,7 +40,12 @@ const Planning = () => {
       <div className="planningMainContainer">
         <div className="iNeedContainer">
           <p>{tempCode}</p>
-          <SearchBar onBarCodeScan={setTempCode} deviceId={deviceId} />
+          <SearchBar
+            onBarCodeScan={setTempCode}
+            deviceId={
+              "9852e6e2e257c5385db9dabc77d2d2c7a950d2e54de359073d88bd30f8e3b974"
+            }
+          />
           <Image
             className="expandArrow"
             src={expandArrow}
