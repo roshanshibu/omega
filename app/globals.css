@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:500&display=swap");
+
 :root {
   --light-yellow: #fffdf5;
   --primary-yellow: #ffe880;
+  --desktop-triplet-container-margins: 10px 15px;
 }
 
 body {
   margin: 0;
+  font-family: "Nunito";
 }

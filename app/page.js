@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <div class="content"></div>
-      <Planning isExpanded={false} />
+      <Planning />
     </>
   );
 }
