@@ -16,6 +16,8 @@ const Planning = () => {
       <div className="styledSeparator">&nbsp;</div>
       <div className="planningMainContainer">
         <div className="iNeedContainer">
+          <p>{tempCode}</p>
+          <SearchBar onBarCodeScan={setTempCode} />
           <Image
             className="expandArrow"
             src={expandArrow}
@@ -27,8 +29,6 @@ const Planning = () => {
             alt="expand menu"
           />
           <p>I need</p>
-          <SearchBar onBarCodeScan={setTempCode} />
-          <p>{tempCode}</p>
         </div>
       </div>
     </div>
