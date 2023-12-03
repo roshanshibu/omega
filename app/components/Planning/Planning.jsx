@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import "./Planning.css";
@@ -10,6 +10,29 @@ import SearchBar from "../SearchBar/SearchBar";
 const Planning = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [tempCode, setTempCode] = useState("-");
+  const [deviceId, setDeviceId] = useState(null);
+  const getList = () => {
+    navigator.mediaDevices.enumerateDevices().then((data) => {
+      console.log(data);
+      const availableVideoDevices = data.filter(
+        (device) => device.kind === "videoinput"
+      );
+      console.log(availableVideoDevices);
+      let dataString = "";
+      availableVideoDevices.map((d) => {
+        dataString += `ID: ${d.deviceId} - ${d.label} | `;
+      });
+      alert(
+        `video device array length :${availableVideoDevices.length} ++ ${dataString}`
+      );
+      setDeviceId(
+        availableVideoDevices[availableVideoDevices.length - 2].deviceId
+      );
+    });
+  };
+  useEffect(() => {
+    getList();
+  });
 
   return (
     <div className={`planning ${isExpanded ? "max" : "min"}`}>
@@ -17,7 +40,7 @@ const Planning = () => {
       <div className="planningMainContainer">
         <div className="iNeedContainer">
           <p>{tempCode}</p>
-          <SearchBar onBarCodeScan={setTempCode} />
+          <SearchBar onBarCodeScan={setTempCode} deviceId={deviceId} />
           <Image
             className="expandArrow"
             src={expandArrow}

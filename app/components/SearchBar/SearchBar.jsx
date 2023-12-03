@@ -1,5 +1,4 @@
 import "./SearchBar.css";
-import { React, useEffect, useState } from "react";
 import { useZxing } from "react-zxing";
 
 const constraints = {
@@ -7,32 +6,7 @@ const constraints = {
   audio: false,
 };
 
-const SearchBar = ({ onBarCodeScan }) => {
-  const [deviceId, setDeviceId] = useState(null);
-  const getList = () => {
-    navigator.mediaDevices.enumerateDevices().then((data) => {
-      console.log(data);
-      const availableVideoDevices = data.filter(
-        (device) => device.kind === "videoinput"
-      );
-      console.log(availableVideoDevices);
-      let dataString = "";
-      availableVideoDevices.map((d) => {
-        dataString += `ID: ${d.deviceId} - ${d.label} | `;
-      });
-      alert(
-        `video device array length :${availableVideoDevices.length} ++ ${dataString}`
-      );
-      setDeviceId[
-        availableVideoDevices[availableVideoDevices.length - 2].deviceId
-      ];
-    });
-  };
-
-  useEffect(() => {
-    getList();
-  });
-
+const SearchBar = ({ onBarCodeScan, deviceId }) => {
   const { ref } = useZxing({
     onDecodeResult(result) {
       onBarCodeScan(result.getText());
