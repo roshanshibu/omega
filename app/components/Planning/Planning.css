@@ -1,0 +1,45 @@
+:root {
+  --separator-size: 20px;
+  --separator-border-radius: 10px;
+  --planning-min-height: 70px;
+  --planning-max-height: 50vh;
+}
+
+.planning {
+  background-color: var(--primary-yellow);
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+  height: var(--planning-min-height);
+  display: flex;
+  flex-direction: column;
+  transition: height 0.5s;
+}
+
+.planning.max {
+  height: var(--planning-max-height);
+}
+
+.styledSeparator {
+  background-color: var(--light-yellow);
+  height: var(--separator-size);
+  width: 100vw;
+  border-radius: 0 0 var(--separator-border-radius)
+    var(--separator-border-radius);
+}
+
+/* desktop */
+@media only screen and (min-width: 768px) {
+  .planning {
+    right: 0;
+    height: 100vh !important;
+    width: 33vw;
+    flex-direction: row;
+  }
+  .styledSeparator {
+    height: 100vh;
+    width: var(--separator-size);
+    border-radius: 0 var(--separator-border-radius)
+      var(--separator-border-radius) 0;
+  }
+}

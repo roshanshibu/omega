@@ -1,10 +1,11 @@
-import styles from "./page.module.css";
+import Planning from "./components/Planning/Planning";
+import "./page.css";
 
 export default function Home() {
   return (
-    <div>
-      <h1>Shopping List</h1>
-      <p>UXDI project</p>
-    </div>
+    <>
+      <div class="content"></div>
+      <Planning isExpanded={false} />
+    </>
   );
 }
