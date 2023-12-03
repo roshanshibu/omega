@@ -43,7 +43,7 @@ const Planning = () => {
           <SearchBar
             onBarCodeScan={setTempCode}
             deviceId={
-              "9852e6e2e257c5385db9dabc77d2d2c7a950d2e54de359073d88bd30f8e3b974"
+              "b06962d39aa4b2adce893c57213acf36332f810306956baec07a41dc397d402c"
             }
           />
           <Image
