@@ -24,7 +24,7 @@ const SearchBar = ({ onBarCodeScan }) => {
         `video device array length :${availableVideoDevices.length} ++ ${dataString}`
       );
       setDeviceId[
-        availableVideoDevices[availableVideoDevices.length - 1].deviceId
+        availableVideoDevices[availableVideoDevices.length - 2].deviceId
       ];
     });
   };
