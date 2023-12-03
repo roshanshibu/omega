@@ -1,0 +1,6 @@
+.viewfinder {
+  width: 70%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 5px;
+}
