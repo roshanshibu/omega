@@ -11,10 +11,6 @@ const Planning = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [tempCode, setTempCode] = useState("-");
 
-  const onBarCodeScan = (code) => {
-    setTempCode(code);
-  };
-
   return (
     <div class={`planning ${isExpanded ? "max" : "min"}`}>
       <div class="styledSeparator">&nbsp;</div>
@@ -30,7 +26,7 @@ const Planning = () => {
             }}
           />
           <p>I need</p>
-          <SearchBar />
+          <SearchBar onBarCodeScan={setTempCode} />
           <p>{tempCode}</p>
         </div>
       </div>

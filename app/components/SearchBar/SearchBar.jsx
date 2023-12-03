@@ -2,7 +2,7 @@ import "./SearchBar.css";
 import { useState } from "react";
 import { useZxing } from "react-zxing";
 
-const SearchBar = (onBarCodeScan) => {
+const SearchBar = ({ onBarCodeScan }) => {
   const { ref } = useZxing({
     onDecodeResult(result) {
       onBarCodeScan(result.getText());
