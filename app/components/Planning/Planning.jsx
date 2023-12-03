@@ -12,10 +12,10 @@ const Planning = () => {
   const [tempCode, setTempCode] = useState("-");
 
   return (
-    <div class={`planning ${isExpanded ? "max" : "min"}`}>
-      <div class="styledSeparator">&nbsp;</div>
+    <div className={`planning ${isExpanded ? "max" : "min"}`}>
+      <div className="styledSeparator">&nbsp;</div>
       <div className="planningMainContainer">
-        <div class="iNeedContainer">
+        <div className="iNeedContainer">
           <Image
             className="expandArrow"
             src={expandArrow}
@@ -24,6 +24,7 @@ const Planning = () => {
                 return !previous;
               });
             }}
+            alt="expand menu"
           />
           <p>I need</p>
           <SearchBar onBarCodeScan={setTempCode} />

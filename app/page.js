@@ -4,7 +4,7 @@ import "./page.css";
 export default function Home() {
   return (
     <>
-      <div class="content"></div>
+      <div className="content"></div>
       <Planning />
     </>
   );
