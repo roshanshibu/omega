@@ -22,11 +22,11 @@ const Planning = () => {
       availableVideoDevices.map((d) => {
         dataString += `ID: ${d.deviceId} - ${d.label} | `;
       });
-      alert(
-        `video device array length :${availableVideoDevices.length} ++ ${dataString}`
-      );
+      // alert(
+      //   `video device array length :${availableVideoDevices.length} ++ ${dataString}`
+      // );
       setDeviceId(
-        availableVideoDevices[availableVideoDevices.length - 2].deviceId
+        availableVideoDevices[availableVideoDevices.length - 1].deviceId
       );
     });
   };
@@ -39,9 +39,7 @@ const Planning = () => {
       <div className="styledSeparator">&nbsp;</div>
       <div className="planningMainContainer">
         <div className="iNeedContainer">
-          <p>{tempCode}</p>
-          <SearchBar onBarCodeScan={setTempCode} deviceId={deviceId} />
-          <Image
+          {/* <Image
             className="expandArrow"
             src={expandArrow}
             onClick={() => {
@@ -51,7 +49,9 @@ const Planning = () => {
             }}
             alt="expand menu"
           />
-          <p>I need</p>
+          <p>I need</p> */}
+          <p>{tempCode}</p>
+          <SearchBar onBarCodeScan={setTempCode} deviceId={deviceId} />
         </div>
       </div>
     </div>

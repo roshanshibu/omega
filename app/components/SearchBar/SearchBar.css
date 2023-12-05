@@ -1,7 +1,12 @@
 .viewfinder {
   width: 70%;
+  max-height: 90px;
   height: 50%;
-  /* padding-bottom: 500px; */
+  padding-bottom: 500px;
   object-fit: cover;
   border-radius: 5px;
+}
+
+#html5qr-code-full-region {
+  margin-bottom: 500px;
 }
