@@ -1,3 +1,4 @@
+import BarCodeScanner from "../BarCodeScanner/BarCodeScanner";
 import BarCodeScannerPlugin from "../BarCodeScannerPlugin";
 import "./SearchBar.css";
 import { useZxing } from "react-zxing";
@@ -19,13 +20,14 @@ const SearchBar = ({ onBarCodeScan, deviceId }) => {
   return (
     <>
       {/* <video ref={ref} className="viewfinder" /> */}
-      <BarCodeScannerPlugin
+      {/* <BarCodeScannerPlugin
         fps={10}
         qrbox={250}
         disableFlip={false}
         className="viewfinder"
         qrCodeSuccessCallback={onBarCodeScan}
-      />
+      /> */}
+      <BarCodeScanner onResult={onBarCodeScan} />
     </>
   );
 };
