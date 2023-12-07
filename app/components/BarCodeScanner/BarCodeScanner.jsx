@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Html5Qrcode } from "html5-qrcode";
+import "./BarCodeScanner.css";
 
-const qrConfig = { fps: 10, qrbox: { width: 300, height: 300 } };
-const brConfig = { fps: 10, qrbox: { width: 300, height: 150 } };
+const brConfig = { fps: 10 };
 let html5QrCode;
 
 const BarCodeScanner = (props) => {
   const fileRef = useRef(null);
   const [cameraList, setCameraList] = useState([]);
   const [activeCamera, setActiveCamera] = useState();
+  const [isCameraOn, setIsCameraOn] = useState(false);
   useEffect(() => {
     html5QrCode = new Html5Qrcode("reader");
     getCameras();
@@ -16,19 +17,21 @@ const BarCodeScanner = (props) => {
     oldRegion && oldRegion.remove();
   }, []);
 
-  const handleClickAdvanced = () => {
+  const toggleCameraOn = () => {
+    if (isCameraOn) stopCamera();
+    else startCamera();
+    setIsCameraOn((isCameraOnNow) => !isCameraOnNow);
+  };
+
+  const startCamera = () => {
     const qrCodeSuccessCallback = (decodedText, decodedResult) => {
       console.info(decodedResult, decodedText);
       props.onResult(decodedText);
-      alert(`decoded:__ ${decodedText}`);
-      handleStop();
+      console.log(`decoded:__ ${decodedText}`);
+      stopCamera();
     };
     html5QrCode
-      .start(
-        { facingMode: "environment" },
-        props.type === "QR" ? qrConfig : brConfig,
-        qrCodeSuccessCallback
-      )
+      .start({ facingMode: "environment" }, brConfig, qrCodeSuccessCallback)
       .then(() => {
         // const oldRegion = document.getElementById("qr-shaded-region");
         // if (oldRegion) oldRegion.innerHTML = "";
@@ -60,7 +63,7 @@ const BarCodeScanner = (props) => {
       setActiveCamera(cameraList.find((cam) => cam.id === cameraId));
     }
   };
-  const handleStop = () => {
+  const stopCamera = () => {
     try {
       html5QrCode
         .stop()
@@ -101,9 +104,11 @@ const BarCodeScanner = (props) => {
   };
 
   return (
-    <div style={{ position: "relative" }}>
-      <div id="reader" width="100%"></div>
-      <button onClick={getCameras}>Get List of cameras</button>
+    <div className="bcs-parent">
+      <button onClick={() => toggleCameraOn()}>toggle cam</button>
+
+      <div id="reader"></div>
+      {/* <button onClick={getCameras}>Get List of cameras</button>
       {cameraList.length > 0 && (
         <select onChange={onCameraChange}>
           {cameraList.map((li) => (
@@ -117,21 +122,17 @@ const BarCodeScanner = (props) => {
           ))}
           <option>Dummy</option>
         </select>
-      )}
-      <button onClick={() => handleClickAdvanced()}>
-        click pro {props.type}
-      </button>
-      <button onClick={() => handleStop()}>stop pro</button>
-      <br />
-      <br />
-      <button onClick={scanLocalFile}>Scan local file</button>
+      )} */}
+      {/* <button onClick={() => startCamera()}>start cam</button>
+      <button onClick={() => stopCamera()}>stop cam</button> */}
+      {/* <button onClick={scanLocalFile}>Scan local file</button>
       <input
         type="file"
         hidden
         ref={fileRef}
         accept="image/*"
         onChange={scanFile}
-      />
+      /> */}
     </div>
   );
 };
