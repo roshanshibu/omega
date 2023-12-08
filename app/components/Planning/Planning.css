@@ -31,6 +31,9 @@
 .planning.min .planningMainContainer {
   height: 100%;
 }
+.planning.max .planningMainContainer {
+  padding-top: 10px;
+}
 .planning.min .iNeedContainer {
   height: 90%;
 }
