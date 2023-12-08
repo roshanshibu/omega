@@ -1,7 +1,7 @@
 :root {
   --separator-size: 20px;
   --separator-border-radius: 15px;
-  --planning-min-height: 90px;
+  --planning-min-height: 100px;
   --planning-max-height: 50vh;
 }
 
