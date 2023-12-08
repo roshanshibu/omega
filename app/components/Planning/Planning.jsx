@@ -17,7 +17,7 @@ const Planning = () => {
       <div className="planningMainContainer">
         <div className="iNeedContainer">
           <Image
-            className="expandArrow"
+            className="expandArrow flex-grow-1"
             src={expandArrow}
             onClick={() => {
               setIsExpanded((previous) => {
@@ -26,7 +26,7 @@ const Planning = () => {
             }}
             alt="expand menu"
           />
-          <p>I need</p>
+          <p className="flex-grow-1">I need</p>
           <SearchBar onResult={setTempCode} />
         </div>
       </div>

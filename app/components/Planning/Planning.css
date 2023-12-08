@@ -5,6 +5,10 @@
   --planning-max-height: 50vh;
 }
 
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
 .planning {
   background-color: var(--primary-yellow);
   position: fixed;

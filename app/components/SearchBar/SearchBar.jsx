@@ -86,7 +86,7 @@ const SearchBar = ({ onResult }) => {
   };
 
   return (
-    <div className="bcs-parent">
+    <div className="bcs-parent flex-grow-2">
       <input
         id="searchTextInput"
         className={isCameraOn ? "hidden" : ""}

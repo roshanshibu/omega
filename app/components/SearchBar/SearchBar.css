@@ -1,10 +1,14 @@
 .bcs-parent {
   display: grid;
   /* background-color: blue; */
-  width: 50vw;
   justify-items: right;
   border-radius: 8px;
+  margin: 0 10px 0 0;
   border: 1px solid #d8b71f;
+}
+
+.flex-grow-2 {
+  flex-grow: 2;
 }
 
 .hidden {
@@ -28,7 +32,9 @@
 }
 
 #reader {
-  width: 100%;
+  width: -webkit-fill-available; /* For WebKit browsers */
+  width: -moz-available; /* For Firefox browsers */
+
   /* background: red; */
   height: 50px;
   border-radius: 8px;
@@ -36,7 +42,9 @@
 }
 
 #reader video {
-  width: 100%;
+  width: -webkit-fill-available !important; /* For WebKit browsers */
+  width: -moz-available !important; /* For Firefox browsers */
+
   display: block;
   object-fit: cover;
   height: 100%;
