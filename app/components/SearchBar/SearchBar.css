@@ -1,12 +1,56 @@
-.viewfinder {
-  width: 70%;
-  max-height: 90px;
-  height: 50%;
-  padding-bottom: 500px;
-  object-fit: cover;
-  border-radius: 5px;
+.bcs-parent {
+  display: grid;
+  /* background-color: blue; */
+  width: 50vw;
+  justify-items: right;
+  border-radius: 8px;
+  border: 1px solid #d8b71f;
 }
 
-#html5qr-code-full-region {
-  margin-bottom: 500px;
+.hidden {
+  opacity: 0.2; /* for testing, set to 0 in production*/
+  /* display: none; */
+}
+
+#toggleButton,
+#reader,
+#searchTextInput {
+  grid-area: 1 / 1;
+  transition: width 0.5s, opacity 0.4s;
+}
+
+#toggleButton {
+  position: relative;
+  width: 50px;
+  margin: 5px;
+  z-index: 2;
+  align-self: center;
+}
+
+#reader {
+  width: 100%;
+  /* background: red; */
+  height: 50px;
+  border-radius: 8px;
+  z-index: 0;
+}
+
+#reader video {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 100%;
+  border-radius: 8px;
+}
+
+#searchTextInput {
+  width: -webkit-fill-available; /* For WebKit browsers */
+  width: -moz-available; /* For Firefox browsers */
+  border-radius: 8px;
+  z-index: 1;
+  border: none;
+}
+
+#searchTextInput:focus {
+  outline: none;
 }

@@ -10,36 +10,13 @@ import SearchBar from "../SearchBar/SearchBar";
 const Planning = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [tempCode, setTempCode] = useState("-");
-  const [deviceId, setDeviceId] = useState(null);
-  const getList = () => {
-    navigator.mediaDevices.enumerateDevices().then((data) => {
-      console.log(data);
-      const availableVideoDevices = data.filter(
-        (device) => device.kind === "videoinput"
-      );
-      console.log(availableVideoDevices);
-      let dataString = "";
-      availableVideoDevices.map((d) => {
-        dataString += `ID: ${d.deviceId} - ${d.label} | `;
-      });
-      // alert(
-      //   `video device array length :${availableVideoDevices.length} ++ ${dataString}`
-      // );
-      setDeviceId(
-        availableVideoDevices[availableVideoDevices.length - 1].deviceId
-      );
-    });
-  };
-  useEffect(() => {
-    getList();
-  });
 
   return (
     <div className={`planning ${isExpanded ? "max" : "min"}`}>
       <div className="styledSeparator">&nbsp;</div>
       <div className="planningMainContainer">
         <div className="iNeedContainer">
-          {/* <Image
+          <Image
             className="expandArrow"
             src={expandArrow}
             onClick={() => {
@@ -49,9 +26,8 @@ const Planning = () => {
             }}
             alt="expand menu"
           />
-          <p>I need</p> */}
-          <p>{tempCode}</p>
-          <SearchBar onBarCodeScan={setTempCode} deviceId={deviceId} />
+          <p>I need</p>
+          <SearchBar onResult={setTempCode} />
         </div>
       </div>
     </div>
