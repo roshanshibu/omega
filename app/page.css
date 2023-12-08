@@ -3,3 +3,7 @@
   overflow: scroll;
   background-color: var(--light-yellow);
 }
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
