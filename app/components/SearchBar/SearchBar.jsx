@@ -86,23 +86,27 @@ const SearchBar = ({ onResult }) => {
   };
 
   return (
-    <div className="bcs-parent flex-grow-2">
-      <input
-        id="searchTextInput"
-        className={isCameraOn ? "hidden" : ""}
-        type="text"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-      />
-      <div id="reader" className={isCameraOn ? "" : "hidden"}></div>
-      <Image
-        id="toggleButton"
-        src={barCodeIcon}
-        onClick={() => toggleCameraOn()}
-        alt="barcode icon"
-      />
+    <div className="searchBarSuggestionsContainer">
+      <div className="searchSuggestionsContainer">
+        <p>hello</p>
+      </div>
+      <div className="bcs-parent flex-grow-2">
+        <input
+          id="searchTextInput"
+          className={isCameraOn ? "hidden" : ""}
+          type="text"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <div id="reader" className={isCameraOn ? "" : "hidden"}></div>
+        <Image
+          id="toggleButton"
+          src={barCodeIcon}
+          onClick={() => toggleCameraOn()}
+          alt="barcode icon"
+        />
 
-      {/* <button onClick={getCameras}>Get List of cameras</button>
+        {/* <button onClick={getCameras}>Get List of cameras</button>
       {cameraList.length > 0 && (
         <select onChange={onCameraChange}>
           {cameraList.map((li) => (
@@ -117,6 +121,7 @@ const SearchBar = ({ onResult }) => {
           <option>Dummy</option>
         </select>
       )} */}
+      </div>
     </div>
   );
 };
