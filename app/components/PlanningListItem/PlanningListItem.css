@@ -1,0 +1,34 @@
+.planningListItemContainer {
+  display: flex;
+  border-radius: 12px;
+  background: #fffdf5;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  transition: opacity 0.2s, transform 0.5s;
+  margin: 4px 0;
+}
+
+.hide {
+  transform: scale(0) translateY(-402px);
+  height: 0;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.planningListItemContainer p {
+  margin: 0;
+  max-width: 45vw;
+  color: #44390b;
+}
+
+.lastBoughtStatContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: end;
+}
+.lastBoughtStatContainer p {
+  color: #d8b71f;
+}

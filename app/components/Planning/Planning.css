@@ -59,6 +59,15 @@
     var(--separator-border-radius);
 }
 
+.planning.min .planningListContainer {
+  display: none;
+}
+
+.planningListContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 12px;
+}
 /* desktop */
 @media only screen and (min-width: 768px) {
   .planning {
@@ -84,5 +93,9 @@
 
   .expandArrow {
     display: none;
+  }
+
+  .planningListContainer {
+    display: unset !important;
   }
 }

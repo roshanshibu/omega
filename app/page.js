@@ -9,7 +9,13 @@ export const ItemsContext = createContext();
 export default function Home() {
   const [items, setItems] = useState([
     { id: 1, name: "Milk", quantity: 2, quantityName: "x", checked: false },
-    { id: 2, name: "Rice", quantity: 5, quantityName: "kg", checked: true },
+    {
+      id: 2,
+      name: "RiceRiceRiceRice RiceRiceRiceRice RiceRice",
+      quantity: 5,
+      quantityName: "kg",
+      checked: true,
+    },
     { id: 3, name: "Cereal", quantity: 1, quantityName: "x", checked: false },
   ]);
   return (

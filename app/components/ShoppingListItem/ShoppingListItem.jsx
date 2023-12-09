@@ -18,7 +18,7 @@ const ShoppingListItem = ({
       <div className="checkListNameContainer" onClick={() => checkItem(item)}>
         <Image
           draggable={false}
-          src={item.checked ? checked : unchecked}
+          src={unchecked}
           alt="checkbox icon"
           className="checkbox"
         />

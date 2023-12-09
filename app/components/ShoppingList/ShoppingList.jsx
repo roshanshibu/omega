@@ -63,7 +63,12 @@ const ShoppingList = () => {
     >
       {itemsContext.items.map((item, index) => (
         <SortableItem key={index}>
-          <div className="shoppingListItemContainer">
+          <div
+            className={
+              "shoppingListItemContainer " +
+              (item.checked ? "shoppingHide" : "")
+            }
+          >
             <ShoppingListItem
               item={item}
               checkItem={checkItem}
