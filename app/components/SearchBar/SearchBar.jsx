@@ -1,9 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import Image from "next/image";
 
 import "./SearchBar.css";
 import barCodeIcon from "@/assets/barcode_icon.svg";
+import DB from "@/app/utils/db";
+import SearchSuggestions from "../SearchSuggestions/SearchSuggestions";
+import { ItemsContext } from "@/app/page";
 
 const brConfig = { fps: 10 };
 let html5QrCode;
@@ -13,6 +16,10 @@ const SearchBar = ({ onResult }) => {
   const [activeCamera, setActiveCamera] = useState();
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const itemsContext = useContext(ItemsContext);
+  const db = new DB("omega");
 
   useEffect(() => {
     html5QrCode = new Html5Qrcode("reader");
@@ -64,7 +71,6 @@ const SearchBar = ({ onResult }) => {
          * devices would be an array of objects of type:
          * { id: "id", label: "label" }
          */
-        console.info(devices);
         if (devices && devices.length) {
           setCameraList(devices);
           setActiveCamera(devices[0]);
@@ -85,11 +91,29 @@ const SearchBar = ({ onResult }) => {
     }
   };
 
+  const createNewItem = async (itemName) => {
+    db.createItem(itemName).then(() => {
+      itemsContext.setGetLatestDBItems((i) => i + 1);
+      setShowSuggestions(false);
+    });
+  };
   return (
-    <div className="bcs-parent flex-grow-2">
-      <div className="searchSuggestionsContainer">
-        <p>hello</p>
-      </div>
+    <div
+      className="bcs-parent flex-grow-2"
+      tabIndex={-1}
+      onFocus={() => {
+        setShowSuggestions(true);
+      }}
+      onBlur={() => setShowSuggestions(false)}
+    >
+      {showSuggestions && (
+        <div className="searchSuggestionsParent">
+          <SearchSuggestions
+            searchText={searchText}
+            createNewItem={createNewItem}
+          />
+        </div>
+      )}
       <input
         id="searchTextInput"
         className={isCameraOn ? "hidden" : ""}
