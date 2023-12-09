@@ -4,7 +4,6 @@ import Image from "next/image";
 
 import "./SearchBar.css";
 import barCodeIcon from "@/assets/barcode_icon.svg";
-import DB from "@/app/utils/db";
 import SearchSuggestions from "../SearchSuggestions/SearchSuggestions";
 import { ItemsContext } from "@/app/page";
 
@@ -19,8 +18,6 @@ const SearchBar = ({ onResult }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const itemsContext = useContext(ItemsContext);
-  const db = new DB("omega");
-
   useEffect(() => {
     html5QrCode = new Html5Qrcode("reader");
     getCameras();
@@ -91,19 +88,24 @@ const SearchBar = ({ onResult }) => {
     }
   };
 
-  const createNewItem = async (itemName) => {
-    db.createItem(itemName).then(() => {
-      itemsContext.setGetLatestDBItems((i) => i + 1);
-      setShowSuggestions(false);
-    });
+  const createNewItem = (itemName) => {
+    itemsContext.setItems([
+      ...itemsContext.items,
+      {
+        id: crypto.randomUUID(),
+        name: itemName,
+        quantity: 1,
+        quantityName: "x",
+        checked: false,
+      },
+    ]);
+    setShowSuggestions(false);
   };
+
   return (
     <div
       className="bcs-parent flex-grow-2"
       tabIndex={-1}
-      onFocus={() => {
-        setShowSuggestions(true);
-      }}
       onBlur={() => setShowSuggestions(false)}
     >
       {showSuggestions && (
@@ -119,7 +121,10 @@ const SearchBar = ({ onResult }) => {
         className={isCameraOn ? "hidden" : ""}
         type="text"
         value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+        onChange={(e) => {
+          setSearchText(e.target.value);
+          setShowSuggestions(e.target.value.length > 1);
+        }}
       />
       <div id="reader" className={isCameraOn ? "" : "hidden"}></div>
       <Image

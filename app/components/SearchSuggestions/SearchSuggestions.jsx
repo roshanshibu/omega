@@ -30,7 +30,7 @@ const SearchSuggestions = ({ searchText, createNewItem }) => {
         : searchText.length > 1 && (
             <div
               className="createNewItemContainer"
-              onClick={() => {
+              onMouseDown={() => {
                 createNewItem(searchText);
               }}
             >
