@@ -8,16 +8,19 @@ const PlanningListItem = ({ item, unCheckItem }) => {
     <div
       className={"planningListItemContainer " + (item.checked ? "" : "hide")}
     >
-      <Image
-        draggable={false}
-        src={checked}
-        alt="checkbox icon"
-        className="checkbox"
+      <span
         onClick={() => {
           unCheckItem(item);
         }}
-      />
-      <p>{item.name}</p>
+      >
+        <Image
+          draggable={false}
+          src={checked}
+          alt="checkbox icon"
+          className="checkbox"
+        />
+        <p>{item.name}</p>
+      </span>
       <div className="lastBoughtStatContainer">
         <p>last bought</p>
         <p>2 weeks ago</p>

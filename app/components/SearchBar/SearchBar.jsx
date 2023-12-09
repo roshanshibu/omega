@@ -108,6 +108,11 @@ const SearchBar = ({ onResult }) => {
     setSearchText("");
   };
 
+  const checkItem = (item) => {
+    itemsContext.unCheckItem(item);
+    setSearchText("");
+  };
+
   return (
     <div
       className="bcs-parent flex-grow-2"
@@ -120,6 +125,7 @@ const SearchBar = ({ onResult }) => {
           <SearchSuggestions
             searchText={searchText}
             createNewItem={createNewItem}
+            checkItem={checkItem}
           />
         </div>
       )}

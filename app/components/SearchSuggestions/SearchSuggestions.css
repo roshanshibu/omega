@@ -1,5 +1,5 @@
 .searchSuggestionsContainer {
-  padding: 10px;
+  padding: 5px;
 }
 .createNewItemContainer {
   display: flex;
@@ -10,7 +10,7 @@
   border-radius: 5px;
   border: 1px dashed #d8b71f;
   background: #fffdf5;
-  padding: 10px;
+  padding: 0px 10px;
   cursor: pointer;
 }
 .addItemIcon {
@@ -24,4 +24,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   line-height: 1;
+}
+.suggestionItem {
+  cursor: pointer;
 }
