@@ -6,6 +6,7 @@ import "./SearchBar.css";
 import barCodeIcon from "@/assets/barcode_icon.svg";
 import SearchSuggestions from "../SearchSuggestions/SearchSuggestions";
 import { ItemsContext } from "@/app/page";
+import { db } from "@/app/utils/db";
 
 const brConfig = { fps: 10 };
 let html5QrCode;
@@ -88,17 +89,21 @@ const SearchBar = ({ onResult }) => {
     }
   };
 
-  const createNewItem = (itemName) => {
-    itemsContext.setItems([
-      ...itemsContext.items,
-      {
-        id: crypto.randomUUID(),
-        name: itemName,
-        quantity: 1,
-        quantityName: "x",
-        checked: false,
-      },
-    ]);
+  const createNewItem = async (itemName) => {
+    let newItem = {
+      id: crypto.randomUUID(),
+      name: itemName,
+      quantity: 1,
+      quantityName: "x",
+      checked: false,
+    };
+    // update db
+    const id = await db.items.add({
+      ...newItem,
+    });
+
+    //update global state
+    itemsContext.setItems([...itemsContext.items, newItem]);
     setShowSuggestions(false);
   };
 
