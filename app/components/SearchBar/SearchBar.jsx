@@ -105,6 +105,7 @@ const SearchBar = ({ onResult }) => {
     //update global state
     itemsContext.setItems([...itemsContext.items, newItem]);
     setShowSuggestions(false);
+    setSearchText("");
   };
 
   return (
@@ -112,6 +113,7 @@ const SearchBar = ({ onResult }) => {
       className="bcs-parent flex-grow-2"
       tabIndex={-1}
       onBlur={() => setShowSuggestions(false)}
+      onFocus={() => setShowSuggestions(searchText.length > 1)}
     >
       {showSuggestions && (
         <div className="searchSuggestionsParent">
