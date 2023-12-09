@@ -3,4 +3,48 @@
   flex-grow: 100;
   align-items: center;
   gap: 10px;
+
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.checkListNameContainer {
+  flex-grow: 5;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 45vw;
+}
+.itemName {
+  line-break: anywhere;
+}
+.extraPadding {
+  padding: 0 10px;
+}
+
+.quantityControlParent {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+.quantityControlContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 5px;
+  justify-content: center;
+  border-radius: 18px;
+  border: 1px solid #ffe880;
+  background: #fffdf5;
+}
+
+.test2 {
+  width: fit-content;
+  border-radius: 20px;
+  border: 1px solid #ffe880;
+  background: #fffdf5;
+}
+.quantityControlIcon {
+  width: 25px;
 }

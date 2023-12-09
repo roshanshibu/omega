@@ -10,6 +10,7 @@ import ShoppingListItem from "../ShoppingListItem/ShoppingListItem";
 import "./ShoppingList.css";
 
 const ShoppingList = () => {
+  const [showQtyControlItem, setShowQtyControlItem] = useState(1);
   const itemsContext = useContext(ItemsContext);
 
   const onSortEnd = (oldIndex, newIndex) => {
@@ -19,10 +20,37 @@ const ShoppingList = () => {
   };
 
   const checkItem = (selectedItem) => {
-    console.log("here");
     itemsContext.setItems((items) => {
       let newArray = items.map((item) => {
         return item.id === selectedItem.id ? { ...item, checked: true } : item;
+      });
+      return newArray;
+    });
+  };
+
+  const increaseQty = (increaseItem) => {
+    itemsContext.setItems((items) => {
+      let newArray = items.map((item) => {
+        return item.id === increaseItem.id
+          ? { ...item, quantity: ++increaseItem.quantity }
+          : item;
+      });
+      return newArray;
+    });
+  };
+
+  const decreaseQty = (decreaseItem) => {
+    itemsContext.setItems((items) => {
+      let newArray = items.map((item) => {
+        return item.id === decreaseItem.id
+          ? {
+              ...item,
+              quantity:
+                decreaseItem.quantity > 1
+                  ? --decreaseItem.quantity
+                  : decreaseItem.quantity,
+            }
+          : item;
       });
       return newArray;
     });
@@ -36,7 +64,14 @@ const ShoppingList = () => {
       {itemsContext.items.map((item, index) => (
         <SortableItem key={index}>
           <div className="shoppingListItemContainer">
-            <ShoppingListItem item={item} checkItem={checkItem} />
+            <ShoppingListItem
+              item={item}
+              checkItem={checkItem}
+              showQtyControl={showQtyControlItem === item.id}
+              getQtyControl={setShowQtyControlItem}
+              increaseQty={increaseQty}
+              decreaseQty={decreaseQty}
+            />
             <SortableKnob>
               <Image
                 draggable={false}
