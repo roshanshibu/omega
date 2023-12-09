@@ -11,7 +11,7 @@ export default function Home() {
     { id: 1, name: "Milk", quantity: 2, quantityName: "x", checked: false },
     {
       id: 2,
-      name: "RiceRiceRiceRice RiceRiceRiceRice RiceRice",
+      name: "Rice",
       quantity: 5,
       quantityName: "kg",
       checked: true,

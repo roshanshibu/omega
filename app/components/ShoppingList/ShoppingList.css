@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   margin: 0 10px;
-  gap: 10px;
+  /* background-color: red; */
 }
 .shoppingListItemContainer {
   display: flex;
@@ -10,15 +10,20 @@
   padding: 5px 10px;
   align-items: center;
   border-radius: 13px;
-  transition: opacity 0.2s, transform 0.5s;
+  margin: 5px 0;
+  transition: margin 0.4s, padding 0.4s;
 }
-
+.shoppingListItemContainer * {
+  transition: opacity 0.4s;
+}
 .shoppingHide {
-  transform: scale(0);
-  height: 0;
-  opacity: 0;
   margin: 0;
   padding: 0;
+  height: 0;
+  pointer-events: none;
+}
+.shoppingHide * {
+  opacity: 0;
 }
 
 .dragIcon {
