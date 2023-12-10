@@ -47,7 +47,9 @@ const Planning = () => {
             <PlanningListItem
               item={item}
               key={index}
-              unCheckItem={itemsContext.unCheckItem}
+              unCheckItem={(selectedItem) =>
+                itemsContext.checkUncheckItem(selectedItem, false)
+              }
             />
           ))}
         </div>
