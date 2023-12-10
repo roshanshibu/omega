@@ -50,6 +50,20 @@ const Planning = () => {
               unCheckItem={itemsContext.unCheckItem}
             />
           ))}
+          {sortedCheckedItems.map((item, index) => (
+            <PlanningListItem
+              item={item}
+              key={index}
+              unCheckItem={itemsContext.unCheckItem}
+            />
+          ))}
+          {sortedCheckedItems.map((item, index) => (
+            <PlanningListItem
+              item={item}
+              key={index}
+              unCheckItem={itemsContext.unCheckItem}
+            />
+          ))}
         </div>
       </div>
     </div>
