@@ -68,6 +68,12 @@
   flex-direction: column;
   margin: 0 12px;
 }
+
+.tagListContainer{
+  display: flex;
+  flex-direction: column;
+  margin: 0 12px;
+}
 /* desktop */
 @media only screen and (min-width: 768px) {
   .planning {

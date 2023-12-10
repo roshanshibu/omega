@@ -8,6 +8,7 @@ import expandArrow from "@/assets/expand-arrow.svg";
 import SearchBar from "../SearchBar/SearchBar";
 import { ItemsContext } from "@/app/page";
 import PlanningListItem from "../PlanningListItem/PlanningListItem";
+import TagListItem from "../TagListItem/TagListItem";
 
 const Planning = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -46,6 +47,15 @@ const Planning = () => {
           {itemsContext.items.map((item, index) => (
             <PlanningListItem
               item={item}
+              key={index}
+              unCheckItem={unCheckItem}
+            />
+          ))}
+        </div>
+        <div className="tagListContainer">
+        {itemsContext.tags.map((tag, index) => (
+            <TagListItem
+              tag={tag}
               key={index}
               unCheckItem={unCheckItem}
             />

@@ -18,9 +18,13 @@ export default function Home() {
     },
     { id: 3, name: "Cereal", quantity: 1, quantityName: "x", checked: false },
   ]);
+  const [tags, setTags] = useState([
+    { id: 1, name: "Breakfast", itemIds: [1,3], checked: true },
+    { id: 2, name: "dinner", itemIds: [2], checked: true },
+  ]);
   return (
     <>
-      <ItemsContext.Provider value={{ items, setItems }}>
+      <ItemsContext.Provider value={{ items, setItems, tags, setTags }}>
         <div className="content">
           <ShoppingList />
         </div>
