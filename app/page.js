@@ -20,7 +20,7 @@ export default function Home() {
   ]);
   const [tags, setTags] = useState([
     { id: 1, name: "Breakfast", itemIds: [1,3], checked: true },
-    { id: 2, name: "dinner", itemIds: [2], checked: true },
+    { id: 2, name: "Dinner", itemIds: [2], checked: true },
   ]);
   return (
     <>

@@ -51,6 +51,15 @@
   transform: rotate(180deg);
 }
 
+.tagIcon{
+  height: 50px;
+    border-radius: 8px;
+    border: none;
+    background: #fffdf5;
+    color: transparent;
+    padding: 0px 10px;
+}
+
 .styledSeparator {
   background-color: var(--light-yellow);
   height: var(--separator-size);

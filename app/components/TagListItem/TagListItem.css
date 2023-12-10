@@ -4,7 +4,7 @@
     background: #fffdf5;
     align-items: flex-start;
     gap: 5px;
-    padding: 5px 10px;
+    padding: 5px 10px 15px 10px;
     transition: opacity 0.2s, transform 0.5s;
     margin: 4px 0;
     flex-direction: column;
@@ -22,11 +22,17 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin: -5px 45px;
+    color: grey;
 
   }
   .tagItems li{
     width: 50%;
-    text-align: center;
+  }
+
+  .tagItems p{
+    margin: 0;
+    padding-left: 25px;
   }
   
   .hide {
