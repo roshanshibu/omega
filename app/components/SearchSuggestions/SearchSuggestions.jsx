@@ -4,7 +4,7 @@ import plusIcon from "@/assets/plus.svg";
 import Image from "next/image";
 import "./SearchSuggestions.css";
 
-const SearchSuggestions = ({ searchText, createNewItem, checkItem }) => {
+const SearchSuggestions = ({ searchText, createItem, checkItem }) => {
   const itemsContext = useContext(ItemsContext);
   const [suggestions, setSuggestions] = useState([]);
   const [exactMatchAvailable, setExactMatchAvailable] = useState(false);
@@ -28,7 +28,7 @@ const SearchSuggestions = ({ searchText, createNewItem, checkItem }) => {
         <div
           className="createNewItemContainer"
           onMouseDown={() => {
-            createNewItem(searchText);
+            createItem(searchText);
           }}
         >
           <Image

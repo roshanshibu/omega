@@ -11,12 +11,35 @@ export const ItemsContext = createContext();
 export default function Home() {
   const [items, setItems] = useState([]);
 
-  const unCheckItem = (selectedItem) => {
-    setItems((items) => {
-      let newArray = items.map((item) => {
-        return item.id === selectedItem.id ? { ...item, checked: false } : item;
+  const createNewItem = async (itemName) => {
+    let newItem = {
+      id: crypto.randomUUID(),
+      name: itemName,
+      quantity: 1,
+      quantityName: "x",
+      checked: false,
+    };
+    // update db
+    const id = await db.items.add({
+      ...newItem,
+    });
+    //update state
+    setItems([...items, newItem]);
+  };
+
+  const checkUncheckItem = (selectedItem, isChecked) => {
+    console.log(selectedItem);
+    //update db
+    db.items.update(selectedItem.id, { checked: isChecked }).then(() => {
+      //update state
+      setItems((items) => {
+        let newArray = items.map((item) => {
+          return item.id === selectedItem.id
+            ? { ...item, checked: isChecked }
+            : item;
+        });
+        return newArray;
       });
-      return newArray;
     });
   };
 
@@ -28,7 +51,14 @@ export default function Home() {
 
   return (
     <>
-      <ItemsContext.Provider value={{ items, setItems, unCheckItem }}>
+      <ItemsContext.Provider
+        value={{
+          items,
+          setItems,
+          createNewItem,
+          checkUncheckItem,
+        }}
+      >
         <div className="content">
           <ShoppingList />
         </div>

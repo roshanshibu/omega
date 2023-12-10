@@ -89,27 +89,14 @@ const SearchBar = ({ onResult }) => {
     }
   };
 
-  const createNewItem = async (itemName) => {
-    let newItem = {
-      id: crypto.randomUUID(),
-      name: itemName,
-      quantity: 1,
-      quantityName: "x",
-      checked: false,
-    };
-    // update db
-    const id = await db.items.add({
-      ...newItem,
-    });
-
-    //update global state
-    itemsContext.setItems([...itemsContext.items, newItem]);
+  const createItem = (itemName) => {
+    itemsContext.createNewItem(itemName);
     setShowSuggestions(false);
     setSearchText("");
   };
 
   const checkItem = (item) => {
-    itemsContext.unCheckItem(item);
+    itemsContext.checkUncheckItem(item, false);
     setSearchText("");
   };
 
@@ -124,7 +111,7 @@ const SearchBar = ({ onResult }) => {
         <div className="searchSuggestionsParent">
           <SearchSuggestions
             searchText={searchText}
-            createNewItem={createNewItem}
+            createItem={createItem}
             checkItem={checkItem}
           />
         </div>

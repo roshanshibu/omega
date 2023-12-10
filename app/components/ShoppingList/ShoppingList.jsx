@@ -19,15 +19,6 @@ const ShoppingList = () => {
     );
   };
 
-  const checkItem = (selectedItem) => {
-    itemsContext.setItems((items) => {
-      let newArray = items.map((item) => {
-        return item.id === selectedItem.id ? { ...item, checked: true } : item;
-      });
-      return newArray;
-    });
-  };
-
   const increaseQty = (increaseItem) => {
     itemsContext.setItems((items) => {
       let newArray = items.map((item) => {
@@ -71,7 +62,9 @@ const ShoppingList = () => {
           >
             <ShoppingListItem
               item={item}
-              checkItem={checkItem}
+              checkItem={(selectedItem) =>
+                itemsContext.checkUncheckItem(selectedItem, true)
+              }
               showQtyControl={showQtyControlItem === item.id}
               getQtyControl={setShowQtyControlItem}
               increaseQty={increaseQty}
