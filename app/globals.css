@@ -5,6 +5,13 @@
   --primary-yellow: #ffe880;
   --desktop-triplet-container-margins: 10px 15px;
   --checkbox-size: 35px;
+
+  /* Planning section */
+  --separator-size: 2vh;
+  --separator-border-radius: 15px;
+  --planning-min-height: 100px;
+  --planning-max-height: 50vh;
+  --planning-list-height: 30vh;
 }
 
 body {
