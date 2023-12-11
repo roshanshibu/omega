@@ -44,3 +44,7 @@
 .lastBoughtStatContainer p {
   color: #d8b71f;
 }
+
+.lastBoughtLabel {
+  font-weight: 300;
+}
