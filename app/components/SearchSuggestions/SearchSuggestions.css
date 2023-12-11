@@ -1,0 +1,30 @@
+.searchSuggestionsContainer {
+  padding: 5px;
+}
+.createNewItemContainer {
+  display: flex;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 0.2;
+  border-radius: 5px;
+  border: 1px dashed #d8b71f;
+  background: #fffdf5;
+  padding: 0px 10px;
+  cursor: pointer;
+}
+.addItemIcon {
+  width: 15px;
+}
+.createItemLabel {
+  color: #d8b71f;
+}
+.newItemNamePrompt {
+  color: #44390b;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 1;
+}
+.suggestionItem {
+  cursor: pointer;
+}

@@ -8,7 +8,7 @@
   margin: 0 10px;
 }
 
-.searchSuggestionsContainer {
+.searchSuggestionsParent {
   position: absolute;
   bottom: 100%;
   width: -webkit-fill-available; /* For WebKit browsers */
@@ -19,6 +19,8 @@
   border-radius: 8px;
   border: 1px solid #ffe880;
   font-size: 15px;
+  max-height: 30vh;
+  overflow: auto;
 }
 
 .flex-grow-2 {
