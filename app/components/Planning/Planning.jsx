@@ -66,7 +66,7 @@ const Planning = () => {
       <div className="planningMainContainer">
         <div className="iNeedContainer">
           <Image
-            className="expandArrow flex-grow-1"
+            className="expandArrow"
             src={expandArrow}
             onClick={() => {
               setIsExpanded((previous) => {
@@ -75,19 +75,21 @@ const Planning = () => {
             }}
             alt="expand menu"
           />
-          <p className="flex-grow-1">I need</p>
-          <Image
-            className="tagIcon"
-            src={isTagView ? tagIcon : tagIconOff}
-            onClick={() => {
-              createAllItemsTag();
-              setIsTagView((previous) => {
-                return !previous;
-              });
-            }}
-            alt="tag view"
-          />
-          <SearchBar onResult={setTempCode} />
+          <p className="iNeedLabel">I need</p>
+          <div className="tagIconSearchSpacerContainer">
+            <Image
+              className="tagIcon"
+              src={isTagView ? tagIcon : tagIconOff}
+              onClick={() => {
+                createAllItemsTag();
+                setIsTagView((previous) => {
+                  return !previous;
+                });
+              }}
+              alt="tag view"
+            />
+            <SearchBar onResult={setTempCode} />
+          </div>
         </div>
         <div className="planningTagsListContainer">
           {isTagView
