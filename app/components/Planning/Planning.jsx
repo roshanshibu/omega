@@ -5,7 +5,8 @@ import Image from "next/image";
 
 import "./Planning.css";
 import expandArrow from "@/assets/expand-arrow.svg";
-import tagIcon from "@/assets/tag-icon.svg";
+import tagIcon from "@/assets/tag-icon-on.svg";
+import tagIconOff from "@/assets/tag-icon-off.svg";
 import SearchBar from "../SearchBar/SearchBar";
 import { ItemsContext } from "@/app/page";
 import PlanningListItem from "../PlanningListItem/PlanningListItem";
@@ -44,8 +45,8 @@ const Planning = () => {
           />
           <p className="flex-grow-1">I need</p>
           <Image
-            className="tagIcon flex-grow-1"
-            src={tagIcon}
+            className="tagIcon"
+            src={isTagView ? tagIcon : tagIconOff}
             onClick={() => {
               setIsTagView((previous) => {
                 return !previous;
@@ -55,25 +56,18 @@ const Planning = () => {
           />
           <SearchBar onResult={setTempCode} />
         </div>
-        <div className="planningListContainer">
-          {itemsContext.items.map((item, index) => (
-            !isTagView && 
-              <PlanningListItem
-                item={item}
-                key={index}
-                unCheckItem={unCheckItem}
-              />
-          ))}
-        </div>
-        <div className="tagListContainer">
-        {itemsContext.tags.map((tag, index) => (
-            isTagView && 
-              <TagListItem
-                tag={tag}
-                key={index}
-                unCheckItem={unCheckItem}
-              />
-          ))}
+        <div className="planningTagsListContainer">
+          {isTagView
+            ? itemsContext.tags.map((tag, index) => (
+                <TagListItem tag={tag} key={index} unCheckItem={unCheckItem} />
+              ))
+            : itemsContext.items.map((item, index) => (
+                <PlanningListItem
+                  item={item}
+                  key={index}
+                  unCheckItem={unCheckItem}
+                />
+              ))}
         </div>
       </div>
     </div>

@@ -51,13 +51,26 @@
   transform: rotate(180deg);
 }
 
-.tagIcon{
-  height: 50px;
-    border-radius: 8px;
-    border: none;
-    background: #fffdf5;
-    color: transparent;
-    padding: 0px 10px;
+.planning.min .tagIcon {
+  transform: scale(0);
+  width: 0;
+  padding: 0;
+  border: none;
+  opacity: 0;
+}
+
+.tagIcon {
+  border-radius: 8px;
+  background: #fffdf5;
+  padding: 10px;
+  border: 1px solid #d8b71f;
+  cursor: pointer;
+  transform: scale(1);
+  opacity: 1;
+  transition: transform 0.2s, opacity 0.5s;
+}
+.dimmed {
+  opacity: 0.5;
 }
 
 .styledSeparator {
@@ -72,13 +85,7 @@
   display: none;
 }
 
-.planningListContainer {
-  display: flex;
-  flex-direction: column;
-  margin: 0 12px;
-}
-
-.tagListContainer{
+.planningTagsListContainer {
   display: flex;
   flex-direction: column;
   margin: 0 12px;
