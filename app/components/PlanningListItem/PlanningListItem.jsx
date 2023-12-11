@@ -22,8 +22,8 @@ const PlanningListItem = ({ item, unCheckItem }) => {
         <p>{item.name}</p>
       </span>
       <div className="lastBoughtStatContainer">
-        <p>last bought</p>
-        <p>2 weeks ago</p>
+        <p className="lastBoughtLabel">last bought</p>
+        <p className="lastBoughtInfoText">2 weeks ago</p>
       </div>
     </div>
   );
