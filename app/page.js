@@ -28,7 +28,6 @@ export default function Home() {
   };
 
   const checkUncheckItem = (selectedItem, isChecked) => {
-    console.log(selectedItem);
     //update db
     db.items.update(selectedItem.id, { checked: isChecked }).then(() => {
       //update state
