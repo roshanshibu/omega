@@ -18,7 +18,7 @@ const TagListItem = ({ tag, unCheckItem }) => {
   };
 
   return (
-    <div className={"tagListItemContainer " + (tag.checked ? "" : "hide")}>
+    <div className="tagListItemContainer">
       <div className="tagItemHeader">
         <Image
           draggable={false}

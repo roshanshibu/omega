@@ -11,22 +11,54 @@ import SearchBar from "../SearchBar/SearchBar";
 import { ItemsContext } from "@/app/page";
 import PlanningListItem from "../PlanningListItem/PlanningListItem";
 import TagListItem from "../TagListItem/TagListItem";
+import { db } from "@/app/utils/db";
 
 const Planning = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [tempCode, setTempCode] = useState("-");
+  const [sortedCheckedItems, setSortedCheckedItems] = useState([]);
+
+  // Tags
   const [isTagView, setIsTagView] = useState(false);
+  const [tags, setTags] = useState([]);
+
+  const createNewTag = async (tag) => {
+    let newTag = { ...tag, id: crypto.randomUUID() };
+    // update db
+    const id = await db.tags.add({
+      ...newTag,
+    });
+    //update state
+    setTags([...tags, newTag]);
+  };
 
   const itemsContext = useContext(ItemsContext);
 
-  const unCheckItem = (selectedItem) => {
-    itemsContext.setItems((items) => {
-      let newArray = items.map((item) => {
-        return item.id === selectedItem.id ? { ...item, checked: false } : item;
-      });
-      return newArray;
+  useEffect(() => {
+    setSortedCheckedItems(
+      itemsContext.items.slice().sort((a, b) => {
+        return a.name.localeCompare(b.name);
+      })
+    );
+  }, [itemsContext.items]);
+
+  useEffect(() => {
+    db.tags.toArray().then((data) => {
+      setTags(data);
     });
+  }, []);
+
+  //TODO: remove from production
+  const createAllItemsTag = () => {
+    if (!tags.map((t) => t.name).includes("All")) {
+      let allItemsTag = {
+        name: "All",
+        itemIds: itemsContext.items.map((item) => item.id),
+      };
+      createNewTag(allItemsTag);
+    }
   };
+  //-----------------------------------------------------
 
   return (
     <div className={`planning ${isExpanded ? "max" : "min"}`}>
@@ -48,6 +80,7 @@ const Planning = () => {
             className="tagIcon"
             src={isTagView ? tagIcon : tagIconOff}
             onClick={() => {
+              createAllItemsTag();
               setIsTagView((previous) => {
                 return !previous;
               });
@@ -58,14 +91,22 @@ const Planning = () => {
         </div>
         <div className="planningTagsListContainer">
           {isTagView
-            ? itemsContext.tags.map((tag, index) => (
-                <TagListItem tag={tag} key={index} unCheckItem={unCheckItem} />
+            ? tags.map((tag, index) => (
+                <TagListItem
+                  tag={tag}
+                  key={index}
+                  unCheckItem={(selectedItem) =>
+                    itemsContext.checkUncheckItem(selectedItem, false)
+                  }
+                />
               ))
-            : itemsContext.items.map((item, index) => (
+            : sortedCheckedItems.map((item, index) => (
                 <PlanningListItem
                   item={item}
                   key={index}
-                  unCheckItem={unCheckItem}
+                  unCheckItem={(selectedItem) =>
+                    itemsContext.checkUncheckItem(selectedItem, false)
+                  }
                 />
               ))}
         </div>
