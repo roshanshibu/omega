@@ -102,7 +102,7 @@ const SearchBar = ({ onResult }) => {
 
   return (
     <div
-      className="bcs-parent flex-grow-2"
+      className="bcs-parent"
       tabIndex={-1}
       onBlur={() => setShowSuggestions(false)}
       onFocus={() => setShowSuggestions(searchText.length > 1)}
