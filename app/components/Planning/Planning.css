@@ -6,9 +6,13 @@
   height: var(--planning-min-height);
   display: flex;
   flex-direction: column;
-  transition: height 0.5s;
+  transform: translateY(0%);
+  transition: height 0.5s, transform 0.5s;
 }
 
+.hidePlanning {
+  transform: translateY(100%);
+}
 .planning.max {
   height: var(--planning-max-height);
 }

@@ -13,6 +13,7 @@ export const ItemsContext = createContext();
 export default function Home() {
   const [items, setItems] = useState([]);
   const [isListMode, setIsListMode] = useState(true);
+  const [animateContainer, setAnimateContainer] = useState(true);
 
   const createNewItem = async (itemName) => {
     let newItem = {
@@ -51,6 +52,14 @@ export default function Home() {
     });
   }, []);
 
+  const mountedStyle = {
+    animation: "inAnimation 100ms ease-in",
+  };
+  const unmountedStyle = {
+    animation: "outAnimation 50ms ease-out",
+    animationFillMode: "forwards",
+  };
+
   return (
     <>
       <ItemsContext.Provider
@@ -63,10 +72,29 @@ export default function Home() {
       >
         <div className="content">
           <ModeSlider isListMode={isListMode} setIsListMode={setIsListMode} />
-          <ShoppingList />
-          {/* <StatsPage /> */}
+          {animateContainer ? (
+            <div
+              style={isListMode ? mountedStyle : unmountedStyle}
+              onAnimationEnd={() => {
+                console.log("animation end");
+                setAnimateContainer(isListMode);
+              }}
+            >
+              <ShoppingList />
+            </div>
+          ) : (
+            <div
+              style={isListMode ? unmountedStyle : mountedStyle}
+              onAnimationEnd={() => {
+                console.log("animation end");
+                setAnimateContainer(isListMode);
+              }}
+            >
+              <StatsPage />
+            </div>
+          )}
         </div>
-        <Planning />
+        <Planning hide={!isListMode} />
       </ItemsContext.Provider>
     </>
   );
