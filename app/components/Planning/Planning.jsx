@@ -13,7 +13,7 @@ import PlanningListItem from "../PlanningListItem/PlanningListItem";
 import TagListItem from "../TagListItem/TagListItem";
 import { db } from "@/app/utils/db";
 
-const Planning = () => {
+const Planning = ({ hide }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [tempCode, setTempCode] = useState("-");
   const [sortedCheckedItems, setSortedCheckedItems] = useState([]);
@@ -61,7 +61,11 @@ const Planning = () => {
   //-----------------------------------------------------
 
   return (
-    <div className={`planning ${isExpanded ? "max" : "min"}`}>
+    <div
+      className={`planning ${isExpanded ? "max" : "min"} ${
+        hide ? "hidePlanning" : ""
+      }`}
+    >
       <div className="styledSeparator">&nbsp;</div>
       <div className="planningMainContainer">
         <div className="iNeedContainer">

@@ -6,7 +6,7 @@ const ModeSlider = ({ isListMode, setIsListMode }) => {
       <div className="modeSlider">
         <div className={`slider ${isListMode ? "" : "sRight"}`}></div>
         <p
-          className={!isListMode && "allowClick"}
+          className={isListMode ? "" : "allowClick"}
           onClick={() => {
             setIsListMode(true);
           }}
@@ -14,7 +14,7 @@ const ModeSlider = ({ isListMode, setIsListMode }) => {
           List
         </p>
         <p
-          className={isListMode && "allowClick"}
+          className={isListMode ? "allowClick" : ""}
           onClick={() => {
             setIsListMode(false);
           }}
