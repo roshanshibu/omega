@@ -18,6 +18,7 @@
   align-items: center;
   gap: 7px;
   font-size: 26px;
+  font-weight: 500;
 }
 .statHeaderText p {
   flex-shrink: 0;

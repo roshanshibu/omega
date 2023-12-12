@@ -1,3 +1,4 @@
+import { humanizeTimeDuration } from "@/app/utils/date";
 import "./PlanningListItem.css";
 import checked from "@/assets/checked.svg";
 import unchecked from "@/assets/unchecked.svg";
@@ -23,7 +24,9 @@ const PlanningListItem = ({ item, unCheckItem }) => {
       </span>
       <div className="lastBoughtStatContainer">
         <p className="lastBoughtLabel">last bought</p>
-        <p className="lastBoughtInfoText">2 weeks ago</p>
+        <p className="lastBoughtInfoText">
+          {humanizeTimeDuration(item.lastChecked)}
+        </p>
       </div>
     </div>
   );

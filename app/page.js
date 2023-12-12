@@ -4,9 +4,10 @@ import Planning from "./components/Planning/Planning";
 import ShoppingList from "./components/ShoppingList/ShoppingList";
 import "./page.css";
 import { useLiveQuery } from "dexie-react-hooks";
-import { db } from "./utils/db";
+import { addCleanDemoData, db } from "./utils/db";
 import ModeSlider from "./components/ModeSlider/ModeSlider";
 import StatsPage from "./components/StatsPage/StatsPage";
+import { getSmallDate, isUnderThreshold } from "./utils/date";
 
 export const ItemsContext = createContext();
 
@@ -22,6 +23,8 @@ export default function Home() {
       quantity: 1,
       quantityName: "x",
       checked: false,
+      lastChecked: 0,
+      lastUnchecked: 0,
     };
     // update db
     const id = await db.items.add({
@@ -32,21 +35,50 @@ export default function Home() {
   };
 
   const checkUncheckItem = (selectedItem, isChecked) => {
+    // lastChecked is stored as a short date
+    // lastUnchecked is stored as unix timestamp - we need date & time
+    let newTimestamp = isChecked ? getSmallDate() : Date.now();
+
+    // In order to avoid updating lastChecked date when the user accidentally toggles an item...
+    // If the user has checked an item, look at it's last unchecked time
+    if (isChecked) {
+      let itemLastUnchecked = selectedItem.lastUnchecked;
+      // if the same item was unchecked less than 2 minutes ago ...
+      if (isUnderThreshold(itemLastUnchecked, Date.now(), 2)) {
+        // ... do not update lastChecked time
+        newTimestamp = selectedItem.lastChecked;
+        console.log("possible accidental toggle, not updating lastChecked");
+      }
+    }
+
     //update db
-    db.items.update(selectedItem.id, { checked: isChecked }).then(() => {
-      //update state
-      setItems((items) => {
-        let newArray = items.map((item) => {
-          return item.id === selectedItem.id
-            ? { ...item, checked: isChecked }
-            : item;
+    db.items
+      .update(selectedItem.id, { checked: isChecked })
+      .then(() => {
+        if (isChecked)
+          db.items.update(selectedItem.id, { lastChecked: newTimestamp });
+        else db.items.update(selectedItem.id, { lastUnchecked: newTimestamp });
+      })
+      .then(() => {
+        //update state
+        setItems((items) => {
+          let newArray = items.map((item) => {
+            return item.id === selectedItem.id
+              ? isChecked
+                ? { ...item, checked: isChecked, lastChecked: newTimestamp }
+                : { ...item, checked: isChecked, lastUnchecked: newTimestamp }
+              : item;
+          });
+          return newArray;
         });
-        return newArray;
       });
-    });
   };
 
   useEffect(() => {
+    // remove in prod, for demo only
+    // keep this call only in a demo branch with its own preview deployment
+    addCleanDemoData();
+
     db.items.toArray().then((data) => {
       setItems(data);
     });
