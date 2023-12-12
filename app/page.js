@@ -5,11 +5,14 @@ import ShoppingList from "./components/ShoppingList/ShoppingList";
 import "./page.css";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "./utils/db";
+import ModeSlider from "./components/ModeSlider/ModeSlider";
+import StatsPage from "./components/StatsPage/StatsPage";
 
 export const ItemsContext = createContext();
 
 export default function Home() {
   const [items, setItems] = useState([]);
+  const [isListMode, setIsListMode] = useState(true);
 
   const createNewItem = async (itemName) => {
     let newItem = {
@@ -59,7 +62,9 @@ export default function Home() {
         }}
       >
         <div className="content">
+          <ModeSlider isListMode={isListMode} setIsListMode={setIsListMode} />
           <ShoppingList />
+          {/* <StatsPage /> */}
         </div>
         <Planning />
       </ItemsContext.Provider>
