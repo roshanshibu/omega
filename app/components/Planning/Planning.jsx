@@ -11,6 +11,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import { ItemsContext } from "@/app/page";
 import PlanningListItem from "../PlanningListItem/PlanningListItem";
 import TagListItem from "../TagListItem/TagListItem";
+import CreateTag from "../CreateTag/CreateTag";
 import { db } from "@/app/utils/db";
 
 const Planning = () => {
@@ -91,7 +92,9 @@ const Planning = () => {
         </div>
         <div className="planningTagsListContainer">
           {isTagView
-            ? tags.map((tag, index) => (
+            ? 
+            <><CreateTag/>
+            {tags.map((tag, index) => (
                 <TagListItem
                   tag={tag}
                   key={index}
@@ -99,7 +102,7 @@ const Planning = () => {
                     itemsContext.checkUncheckItem(selectedItem, false)
                   }
                 />
-              ))
+              ))}</>
             : sortedCheckedItems.map((item, index) => (
                 <PlanningListItem
                   item={item}

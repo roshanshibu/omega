@@ -8,6 +8,7 @@
   transition: opacity 0.2s, transform 0.5s;
   margin: 4px 0;
   flex-direction: column;
+  /* overflow-x: hidden; */
 }
 
 .tagItemHeader {
