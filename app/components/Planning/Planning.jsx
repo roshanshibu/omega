@@ -30,7 +30,7 @@ const Planning = () => {
       ...newTag,
     });
     //update state
-    setTags([...tags, newTag]);
+    setTags([newTag, ...tags]);
   };
 
   const itemsContext = useContext(ItemsContext);
@@ -93,7 +93,11 @@ const Planning = () => {
         <div className="planningTagsListContainer">
           {isTagView
             ? 
-            <><CreateTag/>
+            <><CreateTag
+              createTag={(tag) => 
+                createNewTag(tag)
+              }
+            />
             {tags.map((tag, index) => (
                 <TagListItem
                   tag={tag}

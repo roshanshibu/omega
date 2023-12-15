@@ -1,5 +1,4 @@
-import { useState, useContext } from "react";
-import Select from 'react-select';
+import { useState, useContext, useEffect } from "react";
 
 import "./CreateTag.css";
 import Image from "next/image";
@@ -7,10 +6,48 @@ import plusIcon from "@/assets/plus.svg";
 import { ItemsContext } from "@/app/page";
 
 
-const CreateTag = () => {
-    const [isTagCreatorExpanded, setIsTagCreatorExpanded] = useState(false);
-
+const CreateTag = ({createTag}) => {
     const itemsContext = useContext(ItemsContext);
+
+
+    const [isTagCreatorExpanded, setIsTagCreatorExpanded] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [suggestions, setSuggestions] = useState([]);  
+    const [newTagName, setNewTagName] = useState("");
+    const [newTagItemIds, setNewTagItemIds] = useState([]);
+
+
+    useEffect( () => {
+        if (itemsContext.items.length > 0) {
+            if(searchTerm.length < 1) {
+                setSuggestions([])
+                return
+            }
+            let newSuggestions = itemsContext.items.filter((item) => {
+              return item.name.toLowerCase().includes(searchTerm.toLowerCase());
+            });
+            setSuggestions(newSuggestions);
+          }
+    }, [searchTerm])
+
+    useEffect( () => {
+        if (isTagCreatorExpanded === false) {
+            setSearchTerm("")
+            setNewTagName("")
+            setNewTagItemIds([])
+            return
+          }
+    }, [isTagCreatorExpanded])
+
+    useEffect( () => {
+        newTagItemIds.map((idToRemove) => {
+            let newSuggestions = suggestions.filter((suggestion) => {
+                return suggestion.id != idToRemove;
+            });
+            setSuggestions(newSuggestions);
+            return
+        })
+    }, [newTagItemIds])
 
     return (
         <>
@@ -34,35 +71,45 @@ const CreateTag = () => {
             <div className="createTagBody">
                 {isTagCreatorExpanded &&
                     <div>
-                        <form>
+                        
                             <label>Tag Name </label>
                             <div className="inputContainer">
-                                <input></input>
+                                <input value={newTagName} onChange={(e) => setNewTagName(e.target.value)}/>
                             </div>
                             <label>Items </label>
-                            <div className="inputContainer">
-                                <Select
-                                    isMulti
-                                    className="customSelect"
-                                    name="items"
-                                    // menuIsOpen ={true}
-                                    options={itemsContext.items.map((item)=>{
-                                        console.log({value: item.id, label: item.name})
-                                        return {value: item.id, label: item.name}})}
-                                    styles={{
-                                        control: (baseStyles, state) => ({
-                                            ...baseStyles,
-                                            borderColor: 'white',
-                                        }),
-                                          }}
-                                />
+                            <div className="selectedItemsContainer">
+                                {
+                                    itemsContext.items.map((item,key) => {
+                                        return  newTagItemIds.includes(item.id) && <div key={key} className="selectedItem">{item.name}</div>
+                                    })
+                                }
                             </div>
-                            {/* <label>Items </label>
-                            <div className="inputContainer">
-                                <input></input>
-                            </div> */}
-                            <button>Save Tag</button>
-                        </form>
+                            <div className="tagItemsSearchContainer">
+                                <input className="tagItemsSearchBox" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                                <div className="tagItemsSearchSuggestions">
+                                {
+                                    suggestions.map((suggestion,key) => 
+                                        {return <p key={key} onClick={() => {setNewTagItemIds([...newTagItemIds, suggestion.id])}}>{suggestion.name}</p>}
+                                    )
+                                }
+                                </div>
+                            </div>
+                            <button onClick={() => {
+                                    if(newTagName!="" && newTagItemIds.length != 0){
+                                        let tag = {
+                                            name: newTagName,
+                                            itemIds: newTagItemIds,
+                                        }
+                                        createTag(tag);
+                                        setIsTagCreatorExpanded((previous) => {
+                                            return !previous;
+                                        });
+                                    }
+                                    return
+                                }}>
+                                Save Tag
+                            </button>
+                        
                         
                     </div>
                 }

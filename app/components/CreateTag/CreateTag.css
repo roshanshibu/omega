@@ -25,7 +25,7 @@
 
 .addTagIcon {
     width: 15px;
-    transition: transform 0.5s;
+    transition: all 0.5s;
 }
 .addTagLabel {
     color: #d8b71f;
@@ -36,6 +36,7 @@
 }
 .iconOnExpand {
     transform: rotate(45deg);
+    scale: 1.2;
 }
 
 .createTagBody{
@@ -44,17 +45,43 @@
 .inputContainer{
     border-radius: 8px;
     background-color: white;
+    height:25px;
     /* border: 1px solid #d8b71f; */
 }
-.createTagBody input{
+.tagItemsSearchBox{
+    background-color: white !important;
+}
+.tagItemsSearchSuggestions{
+    background-color: white;
+    /* border: 1px dotted #d8b71f; */
+    border-radius: 5px;
+    padding: 0 5px;
+
+}
+.tagItemsSearchSuggestions p{
+    margin: 2px;
+}
+.selectedItem{
+    background-color: #ffe880;
+    border-radius: 8px;
+    padding: 5px;
+    margin: 10px 0px;
+}
+.createTagBody input,select{
     height: 25px;
     border: none;
     border-radius: 8px;
     width: 100%;
     background-color: transparent;
 }
-textarea:focus, input:focus{
+textarea:focus, input:focus, select:focus{
     outline: none;
+}
+
+.selectedItemsContainer{
+    display: flex;
+    overflow-x: scroll;
+    gap: 5px;
 }
 
 button{
@@ -64,7 +91,8 @@ button{
     margin: 10px 0px;
     color: grey;
     background-color: #ffe880;
-    border: 1px dotted #d8b71f;
+    /* border: 1px dotted #d8b71f; */
     padding: 5px;
     margin: 10px 0 0 0;
+    width: 100%;
 }
