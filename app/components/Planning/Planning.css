@@ -31,7 +31,7 @@
   height: 90%;
 }
 .planning.max .iNeedContainer {
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 }
 .iNeedContainer {
   display: flex;
@@ -105,6 +105,12 @@
 }
 .planningTagsListContainer::-webkit-scrollbar {
   display: none;
+}
+
+.planningListTitle {
+  color: #d8b71f;
+  font-weight: 700;
+  margin: 10px 0 1px 5px;
 }
 /* desktop */
 @media only screen and (min-width: 768px) {
