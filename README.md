@@ -50,9 +50,11 @@ A shopping list webapp
 - [ ] `5` QR Scan to uncheck an item if it is checked
 - [x] `5` Implement item average duration computation logic
 - [x] `3` Add recommendation section in planning
-- [ ] `1` Stats page api - mocked json backend
-- [ ] `2` Call stats api
-- [ ] `3` Skeleton loading for items in stats page
+- [x] `1` Stats page api - mocked json backend
+- [x] `2` Call stats api
+- [x] `3` Skeleton loading for items in stats page.
+- [x] `4` Min view with one product and details
+- [ ] `5` Max view with three products and details
 
 ---
 

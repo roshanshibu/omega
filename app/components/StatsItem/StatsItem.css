@@ -10,7 +10,9 @@
 .itemStatsHeader {
   display: flex;
 }
-
+.userItemName {
+  margin: 5px 0 25px 0;
+}
 .statsLastBoughtStatContainer {
   display: flex;
   flex-direction: column;

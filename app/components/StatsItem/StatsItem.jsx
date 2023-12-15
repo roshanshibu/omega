@@ -17,7 +17,7 @@ const StatsItem = ({ item }) => {
   return (
     <div className="itemStatContainer">
       <div className="itemStatsHeader">
-        <p>{item.name}</p>
+        <p className="userItemName">{item.name}</p>
         <div className="statsLastBoughtStatContainer">
           <p className="statsLastBoughtLabel">last bought</p>
           <p>{humanizeTimeDuration(item.lastChecked)}</p>
