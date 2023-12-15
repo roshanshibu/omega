@@ -113,9 +113,10 @@ const StatsItem = ({ item }) => {
             setAnimHelper(false);
           }}
         >
-          {data.map((product) => {
+          {data.map((product, index) => {
             return (
               <StatsItemDetail
+                key={index}
                 image={baseUrl + product.image}
                 name={product.name}
                 shopName={product.shop}
