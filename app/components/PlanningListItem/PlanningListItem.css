@@ -15,6 +15,9 @@
   user-select: none;
 }
 
+.reduceAnimations {
+  transition: opacity 0.2s !important;
+}
 .hide {
   transform: scale(0) translateY(-402px);
   height: 0;

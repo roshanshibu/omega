@@ -4,10 +4,14 @@ import checked from "@/assets/checked.svg";
 import unchecked from "@/assets/unchecked.svg";
 import Image from "next/image";
 
-const PlanningListItem = ({ item, unCheckItem }) => {
+const PlanningListItem = ({ item, unCheckItem, isRecommendation }) => {
   return (
     <div
-      className={"planningListItemContainer " + (item.checked ? "" : "hide")}
+      className={
+        "planningListItemContainer " +
+        (item.checked ? "" : "hide") +
+        (isRecommendation ? " reduceAnimations" : "")
+      }
     >
       <span
         onClick={() => {
