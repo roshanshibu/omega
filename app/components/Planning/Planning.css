@@ -30,6 +30,9 @@
 .planning.min .iNeedContainer {
   height: 90%;
 }
+.planning.max .iNeedContainer {
+  padding-bottom: 5px;
+}
 .iNeedContainer {
   display: flex;
   align-items: center;

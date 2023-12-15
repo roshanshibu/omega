@@ -23,6 +23,8 @@ export const addCleanDemoData = () => {
           checked: true,
           lastChecked: getSmallDate(new Date(Date.now() - 2 * 86400000)),
           lastUnchecked: 0,
+          averageDuration: 0,
+          count: 0,
         },
         {
           id: crypto.randomUUID(),
@@ -32,6 +34,8 @@ export const addCleanDemoData = () => {
           checked: true,
           lastChecked: getSmallDate(new Date(Date.now() - 5 * 86400000)),
           lastUnchecked: 0,
+          averageDuration: 0,
+          count: 0,
         },
         {
           id: crypto.randomUUID(),
@@ -41,6 +45,8 @@ export const addCleanDemoData = () => {
           checked: true,
           lastChecked: getSmallDate(new Date(Date.now() - 40 * 86400000)),
           lastUnchecked: 0,
+          averageDuration: 30,
+          count: 1,
         },
         {
           id: crypto.randomUUID(),
@@ -50,6 +56,8 @@ export const addCleanDemoData = () => {
           checked: true,
           lastChecked: getSmallDate(new Date(Date.now() - 0 * 86400000)),
           lastUnchecked: 0,
+          averageDuration: 0,
+          count: 0,
         },
         {
           id: crypto.randomUUID(),
@@ -59,6 +67,8 @@ export const addCleanDemoData = () => {
           checked: true,
           lastChecked: getSmallDate(new Date(Date.now() - 25 * 86400000)),
           lastUnchecked: 0,
+          averageDuration: 0,
+          count: 0,
         },
       ];
 
