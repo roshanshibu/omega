@@ -86,6 +86,14 @@
   border-radius: 100%;
 }
 
+.maxStats {
+  display: flex;
+  border-radius: 12px;
+  background: #fff4c1;
+  gap: 5px;
+  padding: 0 5px;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

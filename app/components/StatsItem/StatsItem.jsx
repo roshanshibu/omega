@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import "./StatsItem.css";
 import Image from "next/image";
 import { useState } from "react";
+import StatsItemDetail from "./StatsItemDetail";
 
 const StatsItem = ({ item }) => {
   const [animHelper, setAnimHelper] = useState(true);
@@ -30,7 +31,14 @@ const StatsItem = ({ item }) => {
   //   if (status === "pending") return <p>Loading...</p>;
   //   return <p>Stats Item here {data.toString()} </p>;
   return (
-    <div className="itemStatContainer" onClick={toggleMinMaxView}>
+    <div
+      className="itemStatContainer"
+      onClick={() => {
+        //allow toggle only if data has been loaded
+        if (!(status === "pending" || typeof data == "undefined"))
+          toggleMinMaxView();
+      }}
+    >
       <div className="itemStatsHeader">
         <p className="userItemName">{item.name}</p>
         <div className="statsLastBoughtStatContainer">
@@ -105,7 +113,17 @@ const StatsItem = ({ item }) => {
             setAnimHelper(false);
           }}
         >
-          <p>helloooo</p>
+          {data.map((product) => {
+            return (
+              <StatsItemDetail
+                image={baseUrl + product.image}
+                name={product.name}
+                shopName={product.shop}
+                shopImage={baseUrl + product.shop + ".svg"}
+                price={product.price}
+              />
+            );
+          })}
         </div>
       )}
     </div>
