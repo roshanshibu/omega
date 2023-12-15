@@ -12,11 +12,13 @@ import { ItemsContext } from "@/app/page";
 import PlanningListItem from "../PlanningListItem/PlanningListItem";
 import TagListItem from "../TagListItem/TagListItem";
 import { db } from "@/app/utils/db";
+import { daysBetweenDates, getSmallDate } from "@/app/utils/date";
 
 const Planning = ({ hide }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [tempCode, setTempCode] = useState("-");
   const [sortedCheckedItems, setSortedCheckedItems] = useState([]);
+  const [recommendedItems, setRecommendedItems] = useState([]);
 
   // Tags
   const [isTagView, setIsTagView] = useState(false);
@@ -39,6 +41,17 @@ const Planning = ({ hide }) => {
       itemsContext.items.slice().sort((a, b) => {
         return a.name.localeCompare(b.name);
       })
+    );
+    setRecommendedItems(
+      itemsContext.items
+        .filter((item) => {
+          return (
+            daysBetweenDates(getSmallDate(), item.lastChecked) >
+            item.averageDuration
+          );
+        })
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 2)
     );
   }, [itemsContext.items]);
 
@@ -96,17 +109,22 @@ const Planning = ({ hide }) => {
           </div>
         </div>
         <div className="planningTagsListContainer">
-          {isTagView
-            ? tags.map((tag, index) => (
-                <TagListItem
-                  tag={tag}
-                  key={index}
-                  unCheckItem={(selectedItem) =>
-                    itemsContext.checkUncheckItem(selectedItem, false)
-                  }
-                />
-              ))
-            : sortedCheckedItems.map((item, index) => (
+          {isTagView ? (
+            tags.map((tag, index) => (
+              <TagListItem
+                tag={tag}
+                key={index}
+                unCheckItem={(selectedItem) =>
+                  itemsContext.checkUncheckItem(selectedItem, false)
+                }
+              />
+            ))
+          ) : (
+            <>
+              {recommendedItems.some((item) => item.checked) > 0 && (
+                <p className="planningListTitle">Recommended</p>
+              )}
+              {recommendedItems.map((item, index) => (
                 <PlanningListItem
                   item={item}
                   key={index}
@@ -115,6 +133,18 @@ const Planning = ({ hide }) => {
                   }
                 />
               ))}
+              <p className="planningListTitle">All</p>
+              {sortedCheckedItems.map((item, index) => (
+                <PlanningListItem
+                  item={item}
+                  key={index}
+                  unCheckItem={(selectedItem) =>
+                    itemsContext.checkUncheckItem(selectedItem, false)
+                  }
+                />
+              ))}
+            </>
+          )}
         </div>
       </div>
     </div>
