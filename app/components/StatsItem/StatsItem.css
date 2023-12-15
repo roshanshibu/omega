@@ -6,6 +6,13 @@
   background: #fff;
   margin-bottom: 20px;
   padding: 10px;
+
+  /* Don't allow text selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .itemStatsHeader {
   display: flex;
@@ -77,4 +84,25 @@
   width: 35px;
   height: 35px;
   border-radius: 100%;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
