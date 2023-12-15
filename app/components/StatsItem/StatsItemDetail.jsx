@@ -22,7 +22,7 @@ const StatsItemDetail = ({ image, name, shopName, shopImage, price }) => {
         />
         <p className="sidShopName">{shopName}</p>
       </div>
-      <div className="sidRowContainer extraPadding">
+      <div className="sidRowContainer sidExtraPadding">
         <p className="sidEuroSymbol">€</p>
         <p className="sidPriceText">{price}</p>
       </div>
