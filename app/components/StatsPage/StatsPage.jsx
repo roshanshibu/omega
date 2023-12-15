@@ -1,7 +1,12 @@
+import { ItemsContext } from "@/app/page";
+import StatsItem from "../StatsItem/StatsItem";
 import "./StatsPage.css";
 import CalendarIcon from "@/assets/Calendar.svg";
+import { useContext } from "react";
 
 const StatsPage = () => {
+  const itemsContext = useContext(ItemsContext);
+
   return (
     <div className="statsContainer">
       <div className="statsHeader">
@@ -19,6 +24,11 @@ const StatsPage = () => {
           <p>days</p>
         </div>
       </div>
+
+      {/* <StatsItem itemName={"milk"} /> */}
+      {itemsContext.items.map((item, index) => {
+        if (!item.checked) return <StatsItem item={item} key={index} />;
+      })}
     </div>
   );
 };
