@@ -128,6 +128,7 @@ const Planning = ({ hide }) => {
                 <PlanningListItem
                   item={item}
                   key={index}
+                  isRecommendation={true}
                   unCheckItem={(selectedItem) =>
                     itemsContext.checkUncheckItem(selectedItem, false)
                   }
