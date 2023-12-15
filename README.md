@@ -72,5 +72,5 @@ A shopping list webapp
 
 - [ ] `4` Bug fixes
   - [ ] `4` Search bug - sometimes you need to click twice on search result for it to be checked
-    - [ ] Following that, all items are listed in the search suggestions
+    - [x] Following that, all items are listed in the search suggestions
   - [ ] `4` Shopping list reorder bug
