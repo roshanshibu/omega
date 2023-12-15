@@ -26,8 +26,8 @@ const StatsPage = () => {
       </div>
 
       {/* <StatsItem itemName={"milk"} /> */}
-      {itemsContext.items.map((item, index) => {
-        if (!item.checked) return <StatsItem item={item} key={index} />;
+      {itemsContext.items.map((item) => {
+        if (!item.checked) return <StatsItem item={item} key={item.id} />;
       })}
     </div>
   );

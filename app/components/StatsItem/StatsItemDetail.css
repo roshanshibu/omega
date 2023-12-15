@@ -1,0 +1,40 @@
+.sidContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 11px;
+  background-color: #fffcf0;
+  margin: 5px 0;
+  flex-grow: 1;
+  align-items: center;
+  padding-top: 10px;
+  width: 100%;
+}
+.sidProductName {
+  color: #44390b;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.sidRowContainer {
+  display: flex;
+  gap: 8px;
+  font-size: 15px;
+}
+.sidRowContainer p {
+  margin: 0;
+}
+
+.extraPadding {
+  padding: 10px 0;
+}
+.sidEuroSymbol {
+  color: #d8b71f;
+  text-align: center;
+  align-self: center;
+}
+.sidPriceText {
+  color: #44390b;
+  font-size: 19px;
+  font-weight: 600;
+}

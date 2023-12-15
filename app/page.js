@@ -153,7 +153,6 @@ export default function Home() {
               <div
                 style={isListMode ? mountedStyle : unmountedStyle}
                 onAnimationEnd={() => {
-                  console.log("animation end");
                   setAnimateContainer(isListMode);
                 }}
               >
@@ -163,7 +162,6 @@ export default function Home() {
               <div
                 style={isListMode ? unmountedStyle : mountedStyle}
                 onAnimationEnd={() => {
-                  console.log("animation end");
                   setAnimateContainer(isListMode);
                 }}
               >
