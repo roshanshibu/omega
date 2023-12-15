@@ -99,6 +99,21 @@ export default function Home() {
       });
   };
 
+  const forceDbSync = (syncItem) => {
+    // update every property in db for the provided syncItem to match exactly with the global state
+    // its better to list out properties explicitly
+    db.items.update(syncItem.id, {
+      name: syncItem.name,
+      quantity: syncItem.quantity,
+      quantityName: syncItem.quantityName,
+      checked: syncItem.checked,
+      lastChecked: syncItem.lastChecked,
+      lastUnchecked: syncItem.lastUnchecked,
+      averageDuration: syncItem.averageDuration,
+      count: syncItem.count,
+    });
+  };
+
   useEffect(() => {
     // remove in prod, for demo only
     // keep this call only in a demo branch with its own preview deployment
@@ -125,6 +140,7 @@ export default function Home() {
           setItems,
           createNewItem,
           checkUncheckItem,
+          forceDbSync,
         }}
       >
         <div className="content">
