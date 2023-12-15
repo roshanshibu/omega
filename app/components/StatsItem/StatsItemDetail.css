@@ -12,7 +12,7 @@
 .sidProductName {
   color: #44390b;
   text-align: center;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 300;
 }
 
@@ -25,7 +25,7 @@
   margin: 0;
 }
 
-.extraPadding {
+.sidExtraPadding {
   padding: 10px 0;
 }
 .sidEuroSymbol {
