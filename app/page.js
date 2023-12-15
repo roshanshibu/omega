@@ -7,7 +7,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { addCleanDemoData, db } from "./utils/db";
 import ModeSlider from "./components/ModeSlider/ModeSlider";
 import StatsPage from "./components/StatsPage/StatsPage";
-import { getSmallDate, isUnderThreshold } from "./utils/date";
+import { daysBetweenDates, getSmallDate, isUnderThreshold } from "./utils/date";
 
 export const ItemsContext = createContext();
 
@@ -25,6 +25,8 @@ export default function Home() {
       checked: false,
       lastChecked: 0,
       lastUnchecked: 0,
+      averageDuration: 0,
+      count: 0,
     };
     // update db
     const id = await db.items.add({
@@ -38,6 +40,10 @@ export default function Home() {
     // lastChecked is stored as a short date
     // lastUnchecked is stored as unix timestamp - we need date & time
     let newTimestamp = isChecked ? getSmallDate() : Date.now();
+    let oldAverage = selectedItem.averageDuration;
+    let oldCount = selectedItem.count;
+    let newAverage = oldAverage;
+    let newCount = oldCount;
 
     // In order to avoid updating lastChecked date when the user accidentally toggles an item...
     // If the user has checked an item, look at it's last unchecked time
@@ -49,6 +55,15 @@ export default function Home() {
         newTimestamp = selectedItem.lastChecked;
         console.log("possible accidental toggle, not updating lastChecked");
       }
+      // else we can update the averageDuration value
+      else {
+        let newDuration = daysBetweenDates(
+          getSmallDate(),
+          selectedItem.lastChecked
+        );
+        newCount = oldCount + 1;
+        newAverage = (oldAverage * oldCount + newDuration) / newCount;
+      }
     }
 
     //update db
@@ -56,7 +71,11 @@ export default function Home() {
       .update(selectedItem.id, { checked: isChecked })
       .then(() => {
         if (isChecked)
-          db.items.update(selectedItem.id, { lastChecked: newTimestamp });
+          db.items.update(selectedItem.id, {
+            lastChecked: newTimestamp,
+            averageDuration: newAverage,
+            count: newCount,
+          });
         else db.items.update(selectedItem.id, { lastUnchecked: newTimestamp });
       })
       .then(() => {
@@ -65,7 +84,13 @@ export default function Home() {
           let newArray = items.map((item) => {
             return item.id === selectedItem.id
               ? isChecked
-                ? { ...item, checked: isChecked, lastChecked: newTimestamp }
+                ? {
+                    ...item,
+                    checked: isChecked,
+                    lastChecked: newTimestamp,
+                    averageDuration: newAverage,
+                    count: newCount,
+                  }
                 : { ...item, checked: isChecked, lastUnchecked: newTimestamp }
               : item;
           });
