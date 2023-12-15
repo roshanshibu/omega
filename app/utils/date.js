@@ -28,7 +28,7 @@ export function humanizeTimeDuration(inputNumber) {
   const year = 365 * day;
 
   if (timeDifference < day) {
-    return `today`;
+    return `Today`;
   } else if (timeDifference < week) {
     const days = Math.floor(timeDifference / day);
     return `${days} day${days > 1 ? "s" : ""} ago`;
@@ -38,9 +38,11 @@ export function humanizeTimeDuration(inputNumber) {
   } else if (timeDifference < year) {
     const months = Math.floor(timeDifference / month);
     return `${months} month${months > 1 ? "s" : ""} ago`;
-  } else {
+  } else if (timeDifference >= year) {
     const years = Math.floor(timeDifference / year);
     return `${years} year${years > 1 ? "s" : ""} ago`;
+  } else {
+    return `Never`;
   }
 }
 

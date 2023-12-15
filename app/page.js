@@ -8,6 +8,7 @@ import { addCleanDemoData, db } from "./utils/db";
 import ModeSlider from "./components/ModeSlider/ModeSlider";
 import StatsPage from "./components/StatsPage/StatsPage";
 import { daysBetweenDates, getSmallDate, isUnderThreshold } from "./utils/date";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const ItemsContext = createContext();
 
@@ -15,6 +16,8 @@ export default function Home() {
   const [items, setItems] = useState([]);
   const [isListMode, setIsListMode] = useState(true);
   const [animateContainer, setAnimateContainer] = useState(true);
+
+  const queryClient = new QueryClient();
 
   const createNewItem = async (itemName) => {
     let newItem = {
@@ -134,41 +137,43 @@ export default function Home() {
 
   return (
     <>
-      <ItemsContext.Provider
-        value={{
-          items,
-          setItems,
-          createNewItem,
-          checkUncheckItem,
-          forceDbSync,
-        }}
-      >
-        <div className="content">
-          <ModeSlider isListMode={isListMode} setIsListMode={setIsListMode} />
-          {animateContainer ? (
-            <div
-              style={isListMode ? mountedStyle : unmountedStyle}
-              onAnimationEnd={() => {
-                console.log("animation end");
-                setAnimateContainer(isListMode);
-              }}
-            >
-              <ShoppingList />
-            </div>
-          ) : (
-            <div
-              style={isListMode ? unmountedStyle : mountedStyle}
-              onAnimationEnd={() => {
-                console.log("animation end");
-                setAnimateContainer(isListMode);
-              }}
-            >
-              <StatsPage />
-            </div>
-          )}
-        </div>
-        <Planning hide={!isListMode} />
-      </ItemsContext.Provider>
+      <QueryClientProvider client={queryClient}>
+        <ItemsContext.Provider
+          value={{
+            items,
+            setItems,
+            createNewItem,
+            checkUncheckItem,
+            forceDbSync,
+          }}
+        >
+          <div className="content">
+            <ModeSlider isListMode={isListMode} setIsListMode={setIsListMode} />
+            {animateContainer ? (
+              <div
+                style={isListMode ? mountedStyle : unmountedStyle}
+                onAnimationEnd={() => {
+                  console.log("animation end");
+                  setAnimateContainer(isListMode);
+                }}
+              >
+                <ShoppingList />
+              </div>
+            ) : (
+              <div
+                style={isListMode ? unmountedStyle : mountedStyle}
+                onAnimationEnd={() => {
+                  console.log("animation end");
+                  setAnimateContainer(isListMode);
+                }}
+              >
+                <StatsPage />
+              </div>
+            )}
+          </div>
+          <Planning hide={!isListMode} />
+        </ItemsContext.Provider>
+      </QueryClientProvider>
     </>
   );
 }
