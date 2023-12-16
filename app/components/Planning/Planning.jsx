@@ -13,11 +13,12 @@ import PlanningListItem from "../PlanningListItem/PlanningListItem";
 import TagListItem from "../TagListItem/TagListItem";
 import CreateTag from "../CreateTag/CreateTag";
 import { db } from "@/app/utils/db";
+import { daysBetweenDates, getSmallDate } from "@/app/utils/date";
 
-const Planning = () => {
+const Planning = ({ hide }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [tempCode, setTempCode] = useState("-");
   const [sortedCheckedItems, setSortedCheckedItems] = useState([]);
+  const [recommendedItems, setRecommendedItems] = useState([]);
 
   // Tags
   const [isTagView, setIsTagView] = useState(false);
@@ -41,6 +42,17 @@ const Planning = () => {
         return a.name.localeCompare(b.name);
       })
     );
+    setRecommendedItems(
+      itemsContext.items
+        .filter((item) => {
+          return (
+            daysBetweenDates(getSmallDate(), item.lastChecked) >
+            item.averageDuration
+          );
+        })
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 2)
+    );
   }, [itemsContext.items]);
 
   useEffect(() => {
@@ -50,12 +62,16 @@ const Planning = () => {
   }, []);
 
   return (
-    <div className={`planning ${isExpanded ? "max" : "min"}`}>
+    <div
+      className={`planning ${isExpanded ? "max" : "min"} ${
+        hide ? "hidePlanning" : ""
+      }`}
+    >
       <div className="styledSeparator">&nbsp;</div>
       <div className="planningMainContainer">
         <div className="iNeedContainer">
           <Image
-            className="expandArrow flex-grow-1"
+            className="expandArrow"
             src={expandArrow}
             onClick={() => {
               setIsExpanded((previous) => {
@@ -64,23 +80,24 @@ const Planning = () => {
             }}
             alt="expand menu"
           />
-          <p className="flex-grow-1">I need</p>
-          <Image
-            className="tagIcon"
-            src={isTagView ? tagIcon : tagIconOff}
-            onClick={() => {
-              setIsTagView((previous) => {
-                return !previous;
-              });
-            }}
-            alt="tag view"
-          />
-          <SearchBar onResult={setTempCode} />
+          <p className="iNeedLabel">I need</p>
+          <div className="tagIconSearchSpacerContainer">
+            <Image
+              className="tagIcon"
+              src={isTagView ? tagIcon : tagIconOff}
+              onClick={() => {
+                setIsTagView((previous) => {
+                  return !previous;
+                });
+              }}
+              alt="tag view"
+            />
+            <SearchBar />
+          </div>
         </div>
         <div className="planningTagsListContainer">
-          {isTagView
-            ? 
-            <><CreateTag
+          {isTagView ? 
+          <><CreateTag
               createTag={(tag) => 
                 createNewTag(tag)
               }
@@ -94,7 +111,23 @@ const Planning = () => {
                   }
                 />
               ))}</>
-            : sortedCheckedItems.map((item, index) => (
+           : (
+            <>
+              {recommendedItems.some((item) => item.checked) > 0 && (
+                <p className="planningListTitle">Recommended</p>
+              )}
+              {recommendedItems.map((item, index) => (
+                <PlanningListItem
+                  item={item}
+                  key={index}
+                  isRecommendation={true}
+                  unCheckItem={(selectedItem) =>
+                    itemsContext.checkUncheckItem(selectedItem, false)
+                  }
+                />
+              ))}
+              <p className="planningListTitle">All</p>
+              {sortedCheckedItems.map((item, index) => (
                 <PlanningListItem
                   item={item}
                   key={index}
@@ -103,6 +136,8 @@ const Planning = () => {
                   }
                 />
               ))}
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -11,12 +11,13 @@ import { db } from "@/app/utils/db";
 const brConfig = { fps: 10 };
 let html5QrCode;
 
-const SearchBar = ({ onResult }) => {
+const SearchBar = () => {
   const [cameraList, setCameraList] = useState([]);
   const [activeCamera, setActiveCamera] = useState();
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [barCodes, setBarCodes] = useState([]);
 
   const itemsContext = useContext(ItemsContext);
   useEffect(() => {
@@ -24,6 +25,10 @@ const SearchBar = ({ onResult }) => {
     getCameras();
     const oldRegion = document.getElementById("qr-shaded-region");
     oldRegion && oldRegion.remove();
+
+    db.barCodes.toArray().then((data) => {
+      setBarCodes(data);
+    });
   }, []);
 
   const toggleCameraOn = () => {
@@ -31,19 +36,32 @@ const SearchBar = ({ onResult }) => {
     else startCamera();
   };
 
+  const checkItemByName = (itemName) => {
+    // itemsContext.checkUncheckItem(item, false);
+    itemsContext.items.forEach((item) => {
+      if (item.name.toLowerCase() === itemName) {
+        checkItem(item);
+      }
+    });
+    setSearchText("");
+  };
+
+  const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+    setSearchText(decodedText);
+    let barCodeMatchItem = "";
+    barCodes.forEach((item) => {
+      if (item.codes.includes(parseInt(decodedText))) {
+        barCodeMatchItem = item.name;
+      }
+    });
+    if (barCodeMatchItem !== "") {
+      checkItemByName(barCodeMatchItem);
+    }
+  };
+
   const startCamera = () => {
     setIsCameraOn(true);
-    const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-      console.info(decodedResult, decodedText);
-      onResult(decodedText);
-      console.log(`decoded:__ ${decodedText}`);
-      setSearchText(decodedText);
-    };
-    html5QrCode.start(
-      { facingMode: "environment" },
-      brConfig,
-      qrCodeSuccessCallback
-    );
+    html5QrCode.start(activeCamera.id, brConfig, qrCodeSuccessCallback);
   };
 
   const stopCamera = () => {
@@ -72,6 +90,8 @@ const SearchBar = ({ onResult }) => {
         if (devices && devices.length) {
           setCameraList(devices);
           setActiveCamera(devices[0]);
+          //for prototyping, remove from production
+          if (devices.length == 4) setActiveCamera(devices[3]);
         }
       })
       .catch((err) => {
@@ -102,7 +122,7 @@ const SearchBar = ({ onResult }) => {
 
   return (
     <div
-      className="bcs-parent flex-grow-2"
+      className="bcs-parent"
       tabIndex={-1}
       onBlur={() => setShowSuggestions(false)}
       onFocus={() => setShowSuggestions(searchText.length > 1)}
@@ -141,7 +161,7 @@ const SearchBar = ({ onResult }) => {
             <option
               key={li.id}
               id={li.id}
-              selected={activeCamera && activeCamera.id === li.id}
+              defaultValue={activeCamera && activeCamera.id === li.id}
             >
               {li.label}
             </option>

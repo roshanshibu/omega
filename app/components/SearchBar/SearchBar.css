@@ -1,11 +1,9 @@
 .bcs-parent {
   position: relative;
-  flex-grow: 5;
   display: grid;
   justify-items: right;
   border-radius: 8px;
   border: 1px solid #d8b71f;
-  margin: 0 10px;
 }
 
 .searchSuggestionsParent {
@@ -48,8 +46,8 @@
 }
 
 #reader {
-  width: -webkit-fill-available; /* For WebKit browsers */
-  width: -moz-available; /* For Firefox browsers */
+  width: -webkit-fill-available;
+  width: -moz-available;
 
   /* background: red; */
   height: 50px;
@@ -58,8 +56,8 @@
 }
 
 #reader video {
-  width: -webkit-fill-available !important; /* For WebKit browsers */
-  width: -moz-available !important; /* For Firefox browsers */
+  /* width: -webkit-fill-available !important;
+  width: -moz-available !important; */
 
   display: block;
   object-fit: cover;
@@ -68,8 +66,9 @@
 }
 
 #searchTextInput {
-  width: -webkit-fill-available; /* For WebKit browsers */
-  width: -moz-available; /* For Firefox browsers */
+  width: var(--search-bar-width);
+  /* width: -webkit-fill-available;
+  width: -moz-available;  */
   border-radius: 8px;
   z-index: 1;
   border: none;

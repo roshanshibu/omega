@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Nunito:500&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,500,700&display=swap");
 
 :root {
   --light-yellow: #fffdf5;
@@ -6,6 +6,7 @@
   --desktop-triplet-container-margins: 10px 15px;
   --checkbox-size: 35px;
 
+  --search-bar-width: 55vw;
   /* Planning section */
   --separator-size: 2vh;
   --separator-border-radius: 15px;

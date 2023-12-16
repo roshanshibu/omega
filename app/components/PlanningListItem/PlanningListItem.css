@@ -6,8 +6,18 @@
   padding: 5px 10px;
   transition: opacity 0.2s, transform 0.5s;
   margin: 4px 0;
+
+  /* Don't allow text selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
+.reduceAnimations {
+  transition: opacity 0.2s !important;
+}
 .hide {
   transform: scale(0) translateY(-402px);
   height: 0;
@@ -36,4 +46,8 @@
 }
 .lastBoughtStatContainer p {
   color: #d8b71f;
+}
+
+.lastBoughtLabel {
+  font-weight: 300;
 }

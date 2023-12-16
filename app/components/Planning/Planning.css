@@ -1,7 +1,3 @@
-.flex-grow-1 {
-  flex-grow: 1;
-}
-
 .planning {
   background-color: var(--primary-yellow);
   position: fixed;
@@ -10,15 +6,19 @@
   height: var(--planning-min-height);
   display: flex;
   flex-direction: column;
-  transition: height 0.5s;
+  transform: translateY(0%);
+  transition: height 0.5s, transform 0.5s;
 }
 
+.hidePlanning {
+  transform: translateY(100%);
+}
 .planning.max {
   height: var(--planning-max-height);
 }
 
 .planningMainContainer {
-  width: 98%;
+  width: 96%;
   align-self: center;
 }
 .planning.min .planningMainContainer {
@@ -30,11 +30,14 @@
 .planning.min .iNeedContainer {
   height: 90%;
 }
+.planning.max .iNeedContainer {
+  padding-bottom: 10px;
+}
 .iNeedContainer {
   display: flex;
   align-items: center;
   font-size: 18px;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .expandArrow {
@@ -44,6 +47,18 @@
   transform: rotate(180deg);
 }
 
+.iNeedLabel {
+  margin: 0 5px;
+  flex-shrink: 0;
+}
+
+.planning.max .iNeedLabel {
+  display: none;
+}
+
+.tagIconSearchSpacerContainer {
+  display: flex;
+}
 .planning.min .tagIcon {
   transform: scale(0);
   width: 0;
@@ -61,6 +76,7 @@
   transform: scale(1);
   opacity: 1;
   transition: transform 0.2s, opacity 0.5s;
+  margin-right: 5px;
 }
 .dimmed {
   opacity: 0.5;
@@ -81,7 +97,6 @@
 .planningTagsListContainer {
   display: flex;
   flex-direction: column;
-  margin: 0 12px;
   height: var(--planning-list-height);
   overflow-y: scroll;
   overflow-x: hidden;
@@ -91,6 +106,12 @@
 }
 .planningTagsListContainer::-webkit-scrollbar {
   display: none;
+}
+
+.planningListTitle {
+  color: #d8b71f;
+  font-weight: 700;
+  margin: 10px 0 1px 5px;
 }
 /* desktop */
 @media only screen and (min-width: 768px) {

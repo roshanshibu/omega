@@ -1,0 +1,116 @@
+.itemStatContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: 1px solid #ffe880;
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 10px;
+
+  /* Don't allow text selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.itemStatsHeader {
+  display: flex;
+}
+.userItemName {
+  margin: 5px 0 25px 0;
+}
+.statsLastBoughtStatContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: end;
+}
+.statsLastBoughtStatContainer p {
+  color: #d8b71f;
+  margin: 0.5px;
+}
+
+.statsLastBoughtLabel {
+  font-weight: 300;
+}
+
+.minStats {
+  display: flex;
+  align-items: end;
+  gap: 5px;
+}
+
+.statItemInfo {
+  display: flex;
+  height: 30px;
+  background: #fff4c1;
+  align-items: end;
+  border-radius: 5px;
+  padding-bottom: 5px;
+  flex-grow: 1;
+}
+
+.statItemInfoTextContainer {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding-right: 5px;
+}
+.statItemInfoTextContainer p {
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+.statItemNameLabel {
+  max-width: 40vw;
+}
+.skeletonImage {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #fff4c1;
+  }
+  100% {
+    background-color: #fff4c180;
+  }
+}
+
+.shopLogo {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+}
+
+.maxStats {
+  display: flex;
+  border-radius: 12px;
+  background: #fff4c1;
+  gap: 5px;
+  padding: 0 5px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

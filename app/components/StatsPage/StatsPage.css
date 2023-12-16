@@ -1,0 +1,40 @@
+.statsContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+  padding-top: 30px;
+}
+.statsHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.statHeaderLabel {
+  font-weight: 300;
+  margin: 10px 0;
+}
+.statHeaderText {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 26px;
+  font-weight: 500;
+}
+.statHeaderText p {
+  flex-shrink: 0;
+  margin: 0;
+  padding-top: 9px;
+}
+.calendarIconContainer {
+  width: 46px;
+  height: 49px;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.calendarText {
+  margin: 0;
+  padding-top: 8px;
+}

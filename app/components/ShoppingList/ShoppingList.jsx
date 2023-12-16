@@ -28,6 +28,7 @@ const ShoppingList = () => {
       });
       return newArray;
     });
+    itemsContext.forceDbSync(increaseItem);
   };
 
   const decreaseQty = (decreaseItem) => {
@@ -45,12 +46,17 @@ const ShoppingList = () => {
       });
       return newArray;
     });
+    itemsContext.forceDbSync(decreaseItem);
   };
   return (
     <SortableList
       onSortEnd={onSortEnd}
       className="shoppingListContainer"
       draggedItemClassName="dragged"
+      onBlur={() => {
+        setShowQtyControlItem(-1);
+      }}
+      tabIndex={0}
     >
       {itemsContext.items.map((item, index) => (
         <SortableItem key={index}>
