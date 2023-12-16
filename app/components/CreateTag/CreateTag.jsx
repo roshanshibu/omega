@@ -88,7 +88,7 @@ const CreateTag = ({createTag}) => {
             </div>
             <div className="createTagBody">
                 {isTagCreatorExpanded &&
-                    <div>
+                    <>
                         
                             <label>Tag Name </label>
                             <div className="inputContainer">
@@ -114,7 +114,9 @@ const CreateTag = ({createTag}) => {
                                 }
                             </div>
                             <div className="tagItemsSearchContainer">
-                                <input className="tagItemsSearchBox" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                                <div className="inputContainer">
+                                    <input className="tagItemsSearchBox" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                                </div>
                                 <div className="tagItemsSearchSuggestions">
                                 {
                                     suggestions.map((suggestion,key) => 
@@ -140,7 +142,7 @@ const CreateTag = ({createTag}) => {
                             </button>
                         
                         
-                    </div>
+                    </>
                 }
             </div>
         </div>
