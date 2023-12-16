@@ -32,8 +32,10 @@ const SearchBar = ({ onResult }) => {
       cameraList.map((cam, index) => {
         if (activeCamera.id === cam.id) {
           if (index === cameraList.length - 1) {
+            alert(`cam switched to ${cameraList[0].label}`);
             setActiveCamera(cameraList[0]);
           } else {
+            alert(`cam switched to ${cameraList[index + 1].label}`);
             setActiveCamera(cameraList[index + 1]);
           }
         }
