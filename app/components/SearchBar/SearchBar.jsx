@@ -42,11 +42,7 @@ const SearchBar = ({ onResult }) => {
       console.log(`decoded:__ ${decodedText}`);
       setSearchText(decodedText);
     };
-    html5QrCode.start(
-      { facingMode: "environment" },
-      brConfig,
-      qrCodeSuccessCallback
-    );
+    html5QrCode.start(activeCamera.id, brConfig, qrCodeSuccessCallback);
   };
 
   const stopCamera = () => {
