@@ -4,8 +4,9 @@ import { getSmallDate } from "./date";
 
 export const db = new Dexie("omega");
 db.version(1).stores({
-  items: "++id, &name", // Primary key and indexed props
-  tags: "++id, name", // Primary key and indexed props
+  items: "++id, &name",
+  tags: "++id, name",
+  barCodes: "++id, &name",
 });
 
 export const addCleanDemoData = () => {
@@ -39,7 +40,7 @@ export const addCleanDemoData = () => {
         },
         {
           id: crypto.randomUUID(),
-          name: "Potato",
+          name: "Tea",
           quantity: 1,
           quantityName: "x",
           checked: true,
@@ -79,6 +80,47 @@ export const addCleanDemoData = () => {
           })
           .then(() =>
             console.log(`Added item ${demoItem.name} for test and demo`)
+          )
+          .catch((error) => {
+            // console.log("error in db while creating dummy data:", error);
+          });
+      });
+    }
+  });
+};
+
+export const addBarCodeData = () => {
+  console.log("addBarCodeData was called...");
+  // check if there is data in db...
+  db.barCodes.toArray().then((data) => {
+    if (data.length == 0) {
+      console.log("adding bar codes...");
+      let barCodeData = [
+        {
+          name: "milk",
+          codes: [4311501489871],
+        },
+        {
+          name: "salt",
+          codes: [4001475101601],
+        },
+        {
+          name: "tea",
+          codes: [4009300008040],
+        },
+        {
+          name: "cereal",
+          codes: [5010029201246],
+        },
+      ];
+
+      barCodeData.map((barCode) => {
+        const id = db.barCodes
+          .add({
+            ...barCode,
+          })
+          .then(() =>
+            console.log(`Added item ${barCode.name} for test and demo`)
           )
           .catch((error) => {
             // console.log("error in db while creating dummy data:", error);

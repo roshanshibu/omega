@@ -16,7 +16,6 @@ import { daysBetweenDates, getSmallDate } from "@/app/utils/date";
 
 const Planning = ({ hide }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [tempCode, setTempCode] = useState("-");
   const [sortedCheckedItems, setSortedCheckedItems] = useState([]);
   const [recommendedItems, setRecommendedItems] = useState([]);
 
@@ -105,7 +104,7 @@ const Planning = ({ hide }) => {
               }}
               alt="tag view"
             />
-            <SearchBar onResult={setTempCode} />
+            <SearchBar />
           </div>
         </div>
         <div className="planningTagsListContainer">

@@ -11,12 +11,13 @@ import { db } from "@/app/utils/db";
 const brConfig = { fps: 10 };
 let html5QrCode;
 
-const SearchBar = ({ onResult }) => {
+const SearchBar = () => {
   const [cameraList, setCameraList] = useState([]);
   const [activeCamera, setActiveCamera] = useState();
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [barCodes, setBarCodes] = useState([]);
 
   const itemsContext = useContext(ItemsContext);
   useEffect(() => {
@@ -24,6 +25,10 @@ const SearchBar = ({ onResult }) => {
     getCameras();
     const oldRegion = document.getElementById("qr-shaded-region");
     oldRegion && oldRegion.remove();
+
+    db.barCodes.toArray().then((data) => {
+      setBarCodes(data);
+    });
   }, []);
 
   const toggleCameraOn = () => {
@@ -31,14 +36,31 @@ const SearchBar = ({ onResult }) => {
     else startCamera();
   };
 
+  const checkItemByName = (itemName) => {
+    // itemsContext.checkUncheckItem(item, false);
+    itemsContext.items.forEach((item) => {
+      if (item.name.toLowerCase() === itemName) {
+        checkItem(item);
+      }
+    });
+    setSearchText("");
+  };
+
+  const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+    setSearchText(decodedText);
+    let barCodeMatchItem = "";
+    barCodes.forEach((item) => {
+      if (item.codes.includes(parseInt(decodedText))) {
+        barCodeMatchItem = item.name;
+      }
+    });
+    if (barCodeMatchItem !== "") {
+      checkItemByName(barCodeMatchItem);
+    }
+  };
+
   const startCamera = () => {
     setIsCameraOn(true);
-    const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-      console.info(decodedResult, decodedText);
-      onResult(decodedText);
-      console.log(`decoded:__ ${decodedText}`);
-      setSearchText(decodedText);
-    };
     html5QrCode.start(activeCamera.id, brConfig, qrCodeSuccessCallback);
   };
 
