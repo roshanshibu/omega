@@ -65,11 +65,8 @@ export default function Home() {
           getSmallDate(),
           selectedItem.lastChecked
         );
-        console.log("newDuration", newDuration);
         newCount = oldCount + 1;
-        console.log("newCount", newCount);
         newAverage = (oldAverage * oldCount + newDuration) / newCount;
-        console.log("newAverage", newAverage);
       }
     }
 
