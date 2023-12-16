@@ -19,20 +19,23 @@
 }
 
 .tagItems {
-  display: flex;
-  flex-wrap: wrap;
+  align-items: stretch;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 1fr 1fr;
+  /* display: flex;
+  flex-wrap: wrap; */
   padding: 0 36px;
   color: grey;
   width: fit-content;
   width: -moz-available;
 }
-.tagItems li {
+/* .tagItems li {
   width: 50%;
-}
+} */
 
 .tagItems p {
   margin: 0;
-  padding-left: 25px;
 }
 
 .hide {
