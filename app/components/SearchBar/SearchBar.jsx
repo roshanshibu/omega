@@ -30,18 +30,6 @@ const SearchBar = ({ onResult }) => {
     if (isCameraOn) {
       stopCamera();
     } else {
-      // switch camera for next time
-      cameraList.map((cam, index) => {
-        if (activeCamera.id === cam.id) {
-          if (index === cameraList.length - 1) {
-            alert(`cam switched to ${cameraList[0].label}`);
-            setActiveCamera(cameraList[0]);
-          } else {
-            alert(`cam switched to ${cameraList[index + 1].label}`);
-            setActiveCamera(cameraList[index + 1]);
-          }
-        }
-      });
       startCamera();
     }
   };
@@ -149,21 +137,21 @@ const SearchBar = ({ onResult }) => {
         alt="barcode icon"
       />
 
-      {/* <button onClick={getCameras}>Get List of cameras</button>
+      <button onClick={getCameras}>Get List of cameras</button>
       {cameraList.length > 0 && (
         <select onChange={onCameraChange}>
           {cameraList.map((li) => (
             <option
               key={li.id}
               id={li.id}
-              selected={activeCamera && activeCamera.id === li.id}
+              defaultValue={activeCamera && activeCamera.id === li.id}
             >
               {li.label}
             </option>
           ))}
           <option>Dummy</option>
         </select>
-      )} */}
+      )}
     </div>
   );
 };
