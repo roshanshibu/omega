@@ -28,6 +28,8 @@ const SearchBar = ({ onResult }) => {
 
   const toggleCameraOn = () => {
     if (isCameraOn) {
+      stopCamera();
+    } else {
       // switch camera for next time
       cameraList.map((cam, index) => {
         if (activeCamera.id === cam.id) {
@@ -40,8 +42,8 @@ const SearchBar = ({ onResult }) => {
           }
         }
       });
-      stopCamera();
-    } else startCamera();
+      startCamera();
+    }
   };
 
   const startCamera = () => {
