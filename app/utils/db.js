@@ -40,7 +40,7 @@ export const addCleanDemoData = () => {
         },
         {
           id: crypto.randomUUID(),
-          name: "Tea",
+          name: "Dishwasher Tabs",
           quantity: 1,
           quantityName: "x",
           checked: true,
@@ -106,11 +106,15 @@ export const addBarCodeData = () => {
         },
         {
           name: "tea",
-          codes: [4009300008040],
+          codes: [4009300008040, 9001475049106],
         },
         {
           name: "cereal",
           codes: [5010029201246],
+        },
+        {
+          name: "dishwasher tabs",
+          codes: [4311501033562],
         },
       ];
 
