@@ -72,6 +72,12 @@ const SearchBar = ({ onResult }) => {
         if (devices && devices.length) {
           setCameraList(devices);
           setActiveCamera(devices[0]);
+          console.log(devices);
+          setSearchText(
+            `devices len: ${devices.length}, names: ${devices.map(
+              (d) => `${d.label}|`
+            )}`
+          );
         }
       })
       .catch((err) => {
