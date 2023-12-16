@@ -58,14 +58,18 @@ export default function Home() {
         newTimestamp = selectedItem.lastChecked;
         console.log("possible accidental toggle, not updating lastChecked");
       }
-      // else we can update the averageDuration value
-      else {
+      // if this is a new item, which will not have a last checked time, ignore it
+      // otherwise, we can update the averageDuration value
+      else if (selectedItem.lastChecked !== 0) {
         let newDuration = daysBetweenDates(
           getSmallDate(),
           selectedItem.lastChecked
         );
+        console.log("newDuration", newDuration);
         newCount = oldCount + 1;
+        console.log("newCount", newCount);
         newAverage = (oldAverage * oldCount + newDuration) / newCount;
+        console.log("newAverage", newAverage);
       }
     }
 
