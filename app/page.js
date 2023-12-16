@@ -168,7 +168,7 @@ export default function Home() {
                       className="emptyShoppingBasketImage"
                       width={200}
                     />
-                    <p>Add some items to your list</p>
+                    <p>Your shopping list is empty</p>
                   </div>
                 ) : (
                   <ShoppingList />
