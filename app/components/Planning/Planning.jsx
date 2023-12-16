@@ -96,13 +96,10 @@ const Planning = ({ hide }) => {
           </div>
         </div>
         <div className="planningTagsListContainer">
-          {isTagView ? 
-          <><CreateTag
-              createTag={(tag) => 
-                createNewTag(tag)
-              }
-            />
-            {tags.map((tag, index) => (
+          {isTagView ? (
+            <>
+              <CreateTag createTag={(tag) => createNewTag(tag)} />
+              {tags.map((tag, index) => (
                 <TagListItem
                   tag={tag}
                   key={index}
@@ -110,8 +107,9 @@ const Planning = ({ hide }) => {
                     itemsContext.checkUncheckItem(selectedItem, false)
                   }
                 />
-              ))}</>
-           : (
+              ))}
+            </>
+          ) : (
             <>
               {recommendedItems.some((item) => item.checked) > 0 && (
                 <p className="planningListTitle">Recommended</p>
@@ -127,15 +125,19 @@ const Planning = ({ hide }) => {
                 />
               ))}
               <p className="planningListTitle">All</p>
-              {sortedCheckedItems.map((item, index) => (
-                <PlanningListItem
-                  item={item}
-                  key={index}
-                  unCheckItem={(selectedItem) =>
-                    itemsContext.checkUncheckItem(selectedItem, false)
-                  }
-                />
-              ))}
+              {sortedCheckedItems.map((item, index) =>
+                recommendedItems.includes(item) ? (
+                  <></>
+                ) : (
+                  <PlanningListItem
+                    item={item}
+                    key={index}
+                    unCheckItem={(selectedItem) =>
+                      itemsContext.checkUncheckItem(selectedItem, false)
+                    }
+                  />
+                )
+              )}
             </>
           )}
         </div>

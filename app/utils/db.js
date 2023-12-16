@@ -18,6 +18,17 @@ export const addCleanDemoData = () => {
       let demoItems = [
         {
           id: crypto.randomUUID(),
+          name: "Milk",
+          quantity: 2,
+          quantityName: "x",
+          checked: true,
+          lastChecked: getSmallDate(new Date(Date.now() - 0 * 86400000)),
+          lastUnchecked: 0,
+          averageDuration: 2,
+          count: 20,
+        },
+        {
+          id: crypto.randomUUID(),
           name: "Cereal",
           quantity: 1,
           quantityName: "x",
@@ -40,6 +51,17 @@ export const addCleanDemoData = () => {
         },
         {
           id: crypto.randomUUID(),
+          name: "Eggs",
+          quantity: 1,
+          quantityName: "x",
+          checked: true,
+          lastChecked: getSmallDate(new Date(Date.now() - 6 * 86400000)),
+          lastUnchecked: 0,
+          averageDuration: 12,
+          count: 1,
+        },
+        {
+          id: crypto.randomUUID(),
           name: "Dishwasher Tabs",
           quantity: 1,
           quantityName: "x",
@@ -48,17 +70,6 @@ export const addCleanDemoData = () => {
           lastUnchecked: 0,
           averageDuration: 30,
           count: 4,
-        },
-        {
-          id: crypto.randomUUID(),
-          name: "Milk",
-          quantity: 2,
-          quantityName: "x",
-          checked: true,
-          lastChecked: getSmallDate(new Date(Date.now() - 0 * 86400000)),
-          lastUnchecked: 0,
-          averageDuration: 2,
-          count: 20,
         },
         {
           id: crypto.randomUUID(),
