@@ -4,7 +4,7 @@ import Planning from "./components/Planning/Planning";
 import ShoppingList from "./components/ShoppingList/ShoppingList";
 import "./page.css";
 import { useLiveQuery } from "dexie-react-hooks";
-import { addCleanDemoData, db } from "./utils/db";
+import { addBarCodeData, addCleanDemoData, db } from "./utils/db";
 import ModeSlider from "./components/ModeSlider/ModeSlider";
 import StatsPage from "./components/StatsPage/StatsPage";
 import { daysBetweenDates, getSmallDate, isUnderThreshold } from "./utils/date";
@@ -119,8 +119,8 @@ export default function Home() {
 
   useEffect(() => {
     // remove in prod, for demo only
-    // keep this call only in a demo branch with its own preview deployment
     addCleanDemoData();
+    addBarCodeData();
 
     db.items.toArray().then((data) => {
       setItems(data);
