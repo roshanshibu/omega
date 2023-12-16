@@ -20,9 +20,9 @@
 .tagItems {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
-  margin: -5px 45px;
+  padding: 0 36px;
   color: grey;
+  width: fit-content;
 }
 .tagItems li {
   width: 50%;

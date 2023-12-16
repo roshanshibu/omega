@@ -49,18 +49,6 @@ const Planning = () => {
     });
   }, []);
 
-  //TODO: remove from production
-  const createAllItemsTag = () => {
-    if (!tags.map((t) => t.name).includes("All")) {
-      let allItemsTag = {
-        name: "All",
-        itemIds: itemsContext.items.map((item) => item.id),
-      };
-      createNewTag(allItemsTag);
-    }
-  };
-  //-----------------------------------------------------
-
   return (
     <div className={`planning ${isExpanded ? "max" : "min"}`}>
       <div className="styledSeparator">&nbsp;</div>
@@ -81,7 +69,6 @@ const Planning = () => {
             className="tagIcon"
             src={isTagView ? tagIcon : tagIconOff}
             onClick={() => {
-              createAllItemsTag();
               setIsTagView((previous) => {
                 return !previous;
               });

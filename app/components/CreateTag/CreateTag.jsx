@@ -16,6 +16,15 @@ const CreateTag = ({createTag}) => {
     const [newTagName, setNewTagName] = useState("");
     const [newTagItemIds, setNewTagItemIds] = useState([]);
 
+    const deleteItemSelection = (itemId) => {
+        let newItemIdList = newTagItemIds.filter((id) => {
+            return id != itemId
+        })
+        setNewTagItemIds(newItemIdList)
+        setSearchTerm("")
+        setSuggestions([])
+    };
+
 
     useEffect( () => {
         if (itemsContext.items.length > 0) {
@@ -26,6 +35,11 @@ const CreateTag = ({createTag}) => {
             let newSuggestions = itemsContext.items.filter((item) => {
               return item.name.toLowerCase().includes(searchTerm.toLowerCase());
             });
+            newTagItemIds.map((idToRemove) => {
+                newSuggestions = newSuggestions.filter((suggestion) => {
+                    return suggestion.id != idToRemove;
+                });
+            })
             setSuggestions(newSuggestions);
           }
     }, [searchTerm])
@@ -48,6 +62,10 @@ const CreateTag = ({createTag}) => {
             return
         })
     }, [newTagItemIds])
+
+    // useEffect( () => {
+    //     if(suggestions.length == 0) setSearchTerm("")
+    // }, [suggestions])
 
     return (
         <>
@@ -80,7 +98,18 @@ const CreateTag = ({createTag}) => {
                             <div className="selectedItemsContainer">
                                 {
                                     itemsContext.items.map((item,key) => {
-                                        return  newTagItemIds.includes(item.id) && <div key={key} className="selectedItem">{item.name}</div>
+                                        return  newTagItemIds.includes(item.id) && <div key={key} className="selectedItem">
+                                            {item.name}
+                                            <Image
+                                                draggable={false}
+                                                src={plusIcon}
+                                                alt="delete item"
+                                                className={"deleteItemIcon"}
+                                                onClick={() => {
+                                                    deleteItemSelection(item.id)
+                                                }}
+                                            />
+                                        </div>
                                     })
                                 }
                             </div>
