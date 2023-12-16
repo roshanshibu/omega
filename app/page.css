@@ -10,6 +10,18 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60svh;
+}
+.emptyContainer p {
+  color: #d8b71f;
+  margin: 0;
+}
+
 @keyframes inAnimation {
   0% {
     opacity: 0;

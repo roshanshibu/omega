@@ -9,6 +9,8 @@ import ModeSlider from "./components/ModeSlider/ModeSlider";
 import StatsPage from "./components/StatsPage/StatsPage";
 import { daysBetweenDates, getSmallDate, isUnderThreshold } from "./utils/date";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Image from "next/image";
+import emptyBasket from "@/assets/empty-basket.png";
 
 export const ItemsContext = createContext();
 
@@ -157,7 +159,20 @@ export default function Home() {
                   setAnimateContainer(isListMode);
                 }}
               >
-                <ShoppingList />
+                {items.filter((i) => !i.checked).length === 0 ? (
+                  <div className="emptyContainer">
+                    <Image
+                      draggable={false}
+                      src={emptyBasket}
+                      alt="empty shopping list"
+                      className="emptyShoppingBasketImage"
+                      width={200}
+                    />
+                    <p>Add some items to your list</p>
+                  </div>
+                ) : (
+                  <ShoppingList />
+                )}
               </div>
             ) : (
               <div
