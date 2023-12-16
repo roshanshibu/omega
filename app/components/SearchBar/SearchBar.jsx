@@ -39,11 +39,7 @@ const SearchBar = ({ onResult }) => {
       console.log(`decoded:__ ${decodedText}`);
       setSearchText(decodedText);
     };
-    html5QrCode.start(
-      { facingMode: "environment" },
-      brConfig,
-      qrCodeSuccessCallback
-    );
+    html5QrCode.start(activeCamera.id, brConfig, qrCodeSuccessCallback);
   };
 
   const stopCamera = () => {
@@ -72,6 +68,8 @@ const SearchBar = ({ onResult }) => {
         if (devices && devices.length) {
           setCameraList(devices);
           setActiveCamera(devices[0]);
+          //for prototyping, remove from production
+          if (devices.length == 4) setActiveCamera(devices[3]);
         }
       })
       .catch((err) => {
@@ -141,7 +139,7 @@ const SearchBar = ({ onResult }) => {
             <option
               key={li.id}
               id={li.id}
-              selected={activeCamera && activeCamera.id === li.id}
+              defaultValue={activeCamera && activeCamera.id === li.id}
             >
               {li.label}
             </option>
