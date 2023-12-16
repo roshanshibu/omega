@@ -27,21 +27,8 @@ const SearchBar = ({ onResult }) => {
   }, []);
 
   const toggleCameraOn = () => {
-    if (isCameraOn) {
-      // cameraList.map((cam, index) => {
-      //   if (activeCamera.id === cam.id) {
-      //     if (index === cameraList.length - 1) {
-      //       setActiveCamera(cameraList[0]);
-      //     } else {
-      //       setActiveCamera(cameraList[index + 1]);
-      //     }
-      //   }
-      // });
-      // alert(`cam toggled to use ${activeCamera.label} : ${activeCamera.id}`);
-      stopCamera();
-    } else {
-      startCamera();
-    }
+    if (isCameraOn) stopCamera();
+    else startCamera();
   };
 
   const startCamera = () => {
