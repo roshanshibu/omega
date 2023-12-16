@@ -27,8 +27,19 @@ const SearchBar = ({ onResult }) => {
   }, []);
 
   const toggleCameraOn = () => {
-    if (isCameraOn) stopCamera();
-    else startCamera();
+    if (isCameraOn) {
+      // switch camera for next time
+      cameraList.map((cam, index) => {
+        if (activeCamera.id === cam.id) {
+          if (index === cameraList.length - 1) {
+            setActiveCamera(cameraList[0]);
+          } else {
+            setActiveCamera(cameraList[index + 1]);
+          }
+        }
+      });
+      stopCamera();
+    } else startCamera();
   };
 
   const startCamera = () => {
@@ -72,13 +83,6 @@ const SearchBar = ({ onResult }) => {
         if (devices && devices.length) {
           setCameraList(devices);
           setActiveCamera(devices[0]);
-          if (devices.len == 4) setActiveCamera(devices[3]);
-          console.log(devices);
-          setSearchText(
-            `devices len: ${devices.length}, names: ${devices.map(
-              (d) => `${d.label}|`
-            )} , selected Cam: ${devices[0].label}`
-          );
         }
       })
       .catch((err) => {
