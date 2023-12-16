@@ -76,7 +76,7 @@ const SearchBar = ({ onResult }) => {
           setSearchText(
             `devices len: ${devices.length}, names: ${devices.map(
               (d) => `${d.label}|`
-            )}`
+            )} , selected Cam: ${devices[0].label}`
           );
         }
       })
