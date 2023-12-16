@@ -78,6 +78,7 @@
   font-family: "Nunito";
   color: grey;
   margin-bottom: 5px;
+  font-size: 16px;
 }
 textarea:focus,
 input:focus,
@@ -103,16 +104,17 @@ select:focus {
   width: 15px;
 }
 
-button {
-  border: 1px black;
+.saveTag {
+  display: flex;
+  justify-content: center;
   border-radius: 8px;
   height: 25px;
-  margin: 10px 0px;
   color: grey;
   background-color: #ffe880;
   /* border: 1px dotted #d8b71f; */
-  margin: 10px 0 0 2px;
+  margin: 10px 0;
   width: 100%;
   font-size: 18px;
   font-family: "Nunito";
+  padding: 3px 0px;
 }
