@@ -98,7 +98,8 @@
   display: flex;
   flex-direction: column;
   height: var(--planning-list-height);
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
   padding-bottom: 10vh;

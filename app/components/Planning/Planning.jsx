@@ -11,6 +11,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import { ItemsContext } from "@/app/page";
 import PlanningListItem from "../PlanningListItem/PlanningListItem";
 import TagListItem from "../TagListItem/TagListItem";
+import CreateTag from "../CreateTag/CreateTag";
 import { db } from "@/app/utils/db";
 import { daysBetweenDates, getSmallDate } from "@/app/utils/date";
 
@@ -30,7 +31,7 @@ const Planning = ({ hide }) => {
       ...newTag,
     });
     //update state
-    setTags([...tags, newTag]);
+    setTags([newTag, ...tags]);
   };
 
   const itemsContext = useContext(ItemsContext);
@@ -60,18 +61,6 @@ const Planning = ({ hide }) => {
     });
   }, []);
 
-  //TODO: remove from production
-  const createAllItemsTag = () => {
-    if (!tags.map((t) => t.name).includes("All")) {
-      let allItemsTag = {
-        name: "All",
-        itemIds: itemsContext.items.map((item) => item.id),
-      };
-      createNewTag(allItemsTag);
-    }
-  };
-  //-----------------------------------------------------
-
   return (
     <div
       className={`planning ${isExpanded ? "max" : "min"} ${
@@ -97,7 +86,6 @@ const Planning = ({ hide }) => {
               className="tagIcon"
               src={isTagView ? tagIcon : tagIconOff}
               onClick={() => {
-                createAllItemsTag();
                 setIsTagView((previous) => {
                   return !previous;
                 });
@@ -108,17 +96,22 @@ const Planning = ({ hide }) => {
           </div>
         </div>
         <div className="planningTagsListContainer">
-          {isTagView ? (
-            tags.map((tag, index) => (
-              <TagListItem
-                tag={tag}
-                key={index}
-                unCheckItem={(selectedItem) =>
-                  itemsContext.checkUncheckItem(selectedItem, false)
-                }
-              />
-            ))
-          ) : (
+          {isTagView ? 
+          <><CreateTag
+              createTag={(tag) => 
+                createNewTag(tag)
+              }
+            />
+            {tags.map((tag, index) => (
+                <TagListItem
+                  tag={tag}
+                  key={index}
+                  unCheckItem={(selectedItem) =>
+                    itemsContext.checkUncheckItem(selectedItem, false)
+                  }
+                />
+              ))}</>
+           : (
             <>
               {recommendedItems.some((item) => item.checked) > 0 && (
                 <p className="planningListTitle">Recommended</p>

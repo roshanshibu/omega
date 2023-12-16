@@ -34,18 +34,9 @@ const TagListItem = ({ tag, unCheckItem }) => {
       <div className="tagItems">
         {itemsContext.items.map(
           (item, index) =>
-            tag.itemIds.includes(item.id) && <li key={index}>{item.name}</li>
+            tag.itemIds.includes(item.id) && 
+            index<7 ? <li key={index}>{item.name}</li> : (index == 8 && <p>...</p>)
         )}
-
-        {/* <li>Chicken</li>
-                <li>butter</li>
-                <li>Corriander</li>
-                <li>Chilli</li>
-                <li>salt</li>
-                <li>tomatoes</li>
-                <li>Chicken</li>
-                <p>...</p>
-                 */}
       </div>
     </div>
   );
