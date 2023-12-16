@@ -1,106 +1,109 @@
 .createTagContainer {
-    display: flex;
-    flex-direction: column;
-    height: 30px;
-    border-radius: 12px;
-    border: 1px dashed #d8b71f;
-    background: rgba(255, 255, 255, 0.70);
-    gap: 5px;
-    padding: 5px 10px 10px 10px;
-    transition: height 0.2s;
-    margin: 4px 0;
-    /* overflow: hidden; */
-  }
-
-.createTagMax{
-    height:auto;
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+  border-radius: 12px;
+  border: 1px dashed #d8b71f;
+  background: rgba(255, 255, 255, 0.7);
+  gap: 5px;
+  padding: 5px 10px 10px 10px;
+  transition: height 0.2s;
+  margin: 4px 0;
+  /* overflow: hidden; */
 }
 
-.createTagHeader{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    line-height: 0;
+.createTagMax {
+  height: auto;
+}
+
+.createTagHeader {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 0;
 }
 
 .addTagIcon {
-    width: 15px;
-    transition: all 0.5s;
+  width: 15px;
+  transition: all 0.5s;
 }
 .addTagLabel {
-    color: #d8b71f;
-    transition: all 0.2s;
+  color: #d8b71f;
+  transition: all 0.2s;
 }
-.labelOnExpand{
-    transform: scale(0);
+.labelOnExpand {
+  transform: scale(0);
 }
 .iconOnExpand {
-    transform: rotate(45deg);
-    scale: 1.2;
+  transform: rotate(45deg);
+  scale: 1.2;
 }
 
-.createTagBody{
-    color: grey;
+.createTagBody {
+  color: grey;
 }
-.inputContainer{
-    border-radius: 8px;
-    background-color: white;
-    height:25px;
-    /* border: 1px solid #d8b71f; */
+.inputContainer {
+  border-radius: 8px;
+  background-color: white;
+  height: 25px;
+  /* border: 1px solid #d8b71f; */
 }
-.tagItemsSearchBox{
-    background-color: white !important;
+.tagItemsSearchBox {
+  background-color: white !important;
 }
-.tagItemsSearchSuggestions{
-    background-color: white;
-    /* border: 1px dotted #d8b71f; */
-    border-radius: 5px;
-    padding: 0 5px;
-
+.tagItemsSearchSuggestions {
+  background-color: white;
+  /* border: 1px dotted #d8b71f; */
+  border-radius: 5px;
+  padding: 0 5px;
 }
-.tagItemsSearchSuggestions p{
-    margin: 2px;
+.tagItemsSearchSuggestions p {
+  margin: 2px;
 }
-.selectedItem{
-    display: flex;
-    gap: 8px;
-    background-color: #ffe880;
-    border-radius: 8px;
-    padding: 5px;
-    margin: 10px 0px;
-    align-items: center;
+.selectedItem {
+  display: flex;
+  gap: 8px;
+  background-color: #ffe880;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 10px 0px;
+  align-items: center;
 }
-.createTagBody input,select{
-    height: 25px;
-    border: none;
-    border-radius: 8px;
-    width: 100%;
-    background-color: transparent;
+.createTagBody input,
+select {
+  height: 25px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  background-color: transparent;
+  font-family: "Nunito";
 }
-textarea:focus, input:focus, select:focus{
-    outline: none;
-}
-
-.selectedItemsContainer{
-    display: flex;
-    overflow-x: scroll;
-    gap: 5px;
+textarea:focus,
+input:focus,
+select:focus {
+  outline: none;
 }
 
-.deleteItemIcon{
-    transform: rotate(45deg);
-    width: 15px;
+.selectedItemsContainer {
+  display: flex;
+  overflow-x: scroll;
+  gap: 5px;
 }
 
-button{
-    border: 1px black;
-    border-radius: 8px;
-    /* height: 25px; */
-    margin: 10px 0px;
-    color: grey;
-    background-color: #ffe880;
-    /* border: 1px dotted #d8b71f; */
-    padding: 5px;
-    margin: 10px 0 0 0;
-    width: 100%;
+.deleteItemIcon {
+  transform: rotate(45deg);
+  width: 15px;
+}
+
+button {
+  border: 1px black;
+  border-radius: 8px;
+  /* height: 25px; */
+  margin: 10px 0px;
+  color: grey;
+  background-color: #ffe880;
+  /* border: 1px dotted #d8b71f; */
+  padding: 5px;
+  margin: 10px 0 0 0;
+  width: 100%;
 }
