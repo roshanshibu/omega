@@ -38,3 +38,56 @@
   margin: 0;
   padding-top: 8px;
 }
+
+.storeLocationLabel {
+  color: #44390b;
+  margin: 20px 0 10px 5px;
+}
+.statsLocationContainer {
+  border-radius: 11px;
+  border: 1px solid #ffe880;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5vh;
+}
+.statsLocationHeader {
+  display: flex;
+  padding: 10px;
+  gap: 30px;
+  min-height: 38px;
+  align-items: center;
+}
+.shopHeaderInfoContainer {
+  display: flex;
+}
+.shopHeaderInfoText {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+  opacity: 1;
+  font-size: unset;
+  transition: all 0.5s;
+}
+.shopHeaderInfoText p {
+  margin: 0;
+  color: #44390b;
+}
+.shopHeaderDistanceText {
+  color: #c6ae42 !important;
+  font-size: 12px;
+}
+.shopHeaderHidden {
+  opacity: 0;
+  font-size: 0 !important;
+}
+.shopHeaderHidden .shopHeaderDistanceText {
+  font-size: 0;
+}
+
+.gmnoprint {
+  display: none !important;
+}
+.gm-style-cc {
+  display: none;
+}
