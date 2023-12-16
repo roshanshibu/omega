@@ -26,7 +26,7 @@
 }
 
 .hidden {
-  opacity: 0.2; /* for testing, set to 0 in production*/
+  opacity: 0;
   /* display: none; */
 }
 

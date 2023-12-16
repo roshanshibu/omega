@@ -37,13 +37,18 @@ const SearchBar = () => {
   };
 
   const checkItemByName = (itemName) => {
-    // itemsContext.checkUncheckItem(item, false);
+    let matchFound = false;
     itemsContext.items.forEach((item) => {
       if (item.name.toLowerCase() === itemName) {
+        matchFound = true;
         checkItem(item);
       }
     });
-    setSearchText("");
+    if (!matchFound) {
+      console.log(`going to suggest ${itemName}`);
+      setSearchText(itemName.charAt(0).toUpperCase() + itemName.slice(1));
+      setShowSuggestions(true);
+    }
   };
 
   const qrCodeSuccessCallback = (decodedText, decodedResult) => {
