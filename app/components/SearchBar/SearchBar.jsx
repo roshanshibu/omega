@@ -28,16 +28,16 @@ const SearchBar = ({ onResult }) => {
 
   const toggleCameraOn = () => {
     if (isCameraOn) {
-      cameraList.map((cam, index) => {
-        if (activeCamera.id === cam.id) {
-          if (index === cameraList.length - 1) {
-            setActiveCamera(cameraList[0]);
-          } else {
-            setActiveCamera(cameraList[index + 1]);
-          }
-        }
-      });
-      alert(`cam toggled to use ${activeCamera.label} : ${activeCamera.id}`);
+      // cameraList.map((cam, index) => {
+      //   if (activeCamera.id === cam.id) {
+      //     if (index === cameraList.length - 1) {
+      //       setActiveCamera(cameraList[0]);
+      //     } else {
+      //       setActiveCamera(cameraList[index + 1]);
+      //     }
+      //   }
+      // });
+      // alert(`cam toggled to use ${activeCamera.label} : ${activeCamera.id}`);
       stopCamera();
     } else {
       startCamera();
@@ -81,6 +81,8 @@ const SearchBar = ({ onResult }) => {
         if (devices && devices.length) {
           setCameraList(devices);
           setActiveCamera(devices[0]);
+          //for prototyping, remove from production
+          if (devices.length == 4) setActiveCamera(devices[3]);
         }
       })
       .catch((err) => {
