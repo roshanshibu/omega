@@ -54,7 +54,10 @@ A shopping list webapp
 - [x] `2` Call stats api
 - [x] `3` Skeleton loading for items in stats page.
 - [x] `4` Min view with one product and details
-- [ ] `5` Max view with three products and details
+- [x] `5` Max view with three products and details
+- [ ] Add valid data in backend
+- [x] Handling for new item on scan
+- [x] Handling for no items in shopping list/planning list
 
 ---
 
