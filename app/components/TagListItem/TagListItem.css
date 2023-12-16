@@ -16,6 +16,10 @@
   align-items: center;
   gap: 5px;
   color: #44390b;
+  transition: all 1s;
+}
+.tagItemHeader .checkbox:active {
+  transform: rotate(10deg);
 }
 
 .tagItems {
