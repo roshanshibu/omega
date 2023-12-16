@@ -32,9 +32,14 @@ const TagListItem = ({ tag, unCheckItem }) => {
         <p>{tag.name}</p>
       </div>
       <div className="tagItems">
-        {tag.itemIds.map(
-          (id,index) =>
-            index<7 ? <li key={index}>{(itemsContext.items.find((item) => item.id == id)).name}</li> : (index == 8 && <p>...</p>)
+        {tag.itemIds.map((id, index) =>
+          index < 7 ? (
+            <li key={index}>
+              {itemsContext.items.find((item) => item.id == id).name}
+            </li>
+          ) : (
+            index === 7 && <p>...</p>
+          )
         )}
       </div>
     </div>
