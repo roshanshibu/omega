@@ -53,15 +53,10 @@ const CreateTag = ({createTag}) => {
           }
     }, [isTagCreatorExpanded])
 
-    useEffect( () => {
-        newTagItemIds.map((idToRemove) => {
-            let newSuggestions = suggestions.filter((suggestion) => {
-                return suggestion.id != idToRemove;
-            });
-            setSuggestions(newSuggestions);
-            return
-        })
-    }, [newTagItemIds])
+    const addItemToTag = (itemId) => {
+        setNewTagItemIds([itemId, ...newTagItemIds])
+        setSuggestions(suggestions.filter(s => s.id !== itemId))
+    }
 
     // useEffect( () => {
     //     if(suggestions.length == 0) setSearchTerm("")
@@ -90,37 +85,52 @@ const CreateTag = ({createTag}) => {
                 {isTagCreatorExpanded &&
                     <>
                         
-                            <label>Tag Name </label>
+                            {/* <label>Tag Name </label> */}
                             <div className="inputContainer">
-                                <input value={newTagName} onChange={(e) => setNewTagName(e.target.value)}/>
+                                <input className="tagNameInput" placeholder="Tag Name" value={newTagName} onChange={(e) => setNewTagName(e.target.value)}/>
+                                <div className="selectedItemsContainer">
+                                    {
+                                        newTagItemIds.map((id, index) => {
+                                            return <div key={index} className="selectedItem">
+                                                {itemsContext.items.find((item) => item.id == id).name}
+                                                <Image
+                                                    draggable={false}
+                                                    src={plusIcon}
+                                                    alt="delete item"
+                                                    className={"deleteItemIcon"}
+                                                    onClick={() => {
+                                                        deleteItemSelection(itemsContext.items.find((item) => item.id == id).id)
+                                                    }}
+                                                />
+                                            </div>
+                                        })
+                                        // itemsContext.items.map((item,key) => {
+                                        //     return  newTagItemIds.includes(item.id) && <div key={key} className="selectedItem">
+                                        //         {item.name}
+                                        //         <Image
+                                        //             draggable={false}
+                                        //             src={plusIcon}
+                                        //             alt="delete item"
+                                        //             className={"deleteItemIcon"}
+                                        //             onClick={() => {
+                                        //                 deleteItemSelection(item.id)
+                                        //             }}
+                                        //         />
+                                        //     </div>
+                                        // })
+                                    }
+                                </div>
                             </div>
-                            <label>Items </label>
-                            <div className="selectedItemsContainer">
-                                {
-                                    itemsContext.items.map((item,key) => {
-                                        return  newTagItemIds.includes(item.id) && <div key={key} className="selectedItem">
-                                            {item.name}
-                                            <Image
-                                                draggable={false}
-                                                src={plusIcon}
-                                                alt="delete item"
-                                                className={"deleteItemIcon"}
-                                                onClick={() => {
-                                                    deleteItemSelection(item.id)
-                                                }}
-                                            />
-                                        </div>
-                                    })
-                                }
-                            </div>
+                            {/* <label>Items </label> */}
+                            
                             <div className="tagItemsSearchContainer">
                                 <div className="inputContainer">
-                                    <input className="tagItemsSearchBox" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                                    <input placeholder="Serach for Items to Add" className="tagItemsSearchBox" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                                 </div>
                                 <div className="tagItemsSearchSuggestions">
                                 {
                                     suggestions.map((suggestion,key) => 
-                                        {return <p key={key} onClick={() => {setNewTagItemIds([...newTagItemIds, suggestion.id])}}>{suggestion.name}</p>}
+                                        {return <p key={key} onClick={() => {addItemToTag(suggestion.id)}}>{suggestion.name}</p>}
                                     )
                                 }
                                 </div>
