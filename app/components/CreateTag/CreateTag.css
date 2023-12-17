@@ -42,11 +42,19 @@
 .createTagBody {
   color: grey;
   font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 .inputContainer {
   display: flex;
-  /* border-radius: 8px;
+  align-items: center;
   background-color: white;
+  border-radius: 8px;
+  height: 50px;
+  padding: 0 5px;
+   border-radius: 8px;
+  /*background-color: white;
   height: 25px;
   border: 1px solid #d8b71f; */
 }
@@ -77,7 +85,6 @@
   background-color: rgb(255, 255, 255);
   font-family: "Nunito";
   color: grey;
-  margin-bottom: 5px;
   font-size: 16px;
 }
 textarea:focus,
@@ -85,11 +92,14 @@ input:focus,
 select:focus {
   outline: none;
 }
-
+.tagNameInput{
+  flex: 1;
+}
 .selectedItemsContainer {
   display: flex;
   overflow-x: scroll;
   gap: 5px;
+  flex: 2;
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -114,7 +124,7 @@ select:focus {
   /* border: 1px dotted #d8b71f; */
   margin: 10px 0;
   width: 100%;
-  font-size: 18px;
+  font-size: 16px;
   font-family: "Nunito";
   padding: 3px 0px;
 }
