@@ -126,8 +126,9 @@ const StatsPage = () => {
             }}
           >
             <Marker position={{ lat: 49.414183, lng: 8.650915 }} />
-            {shopStats[selectedShop].locations.map((location) => (
+            {shopStats[selectedShop].locations.map((location, index) => (
               <Marker
+                key={index}
                 position={{ lat: location[0], lng: location[1] }}
                 icon={{
                   url: baseUrl + shopStats[selectedShop].name + ".svg",
