@@ -17,9 +17,6 @@
   gap: 5px;
   color: #44390b;
 }
-.tagItemHeader .checkbox{
-  transition: all 0.3s;
-}
 .tagItemHeader .checkbox:active {
   transform: rotate(10deg);
 }
@@ -52,7 +49,7 @@
   padding: 0;
 }
 
-.deleteTagContainer{
+.deleteTagContainer {
   display: flex;
   width: 100%;
   height: 25px;
@@ -65,7 +62,7 @@
   font-size: 16px;
   font-family: "Nunito";
 }
-.deleteIcon{
+.deleteIcon {
   height: 25px;
   width: auto;
 }
