@@ -16,8 +16,8 @@ const StatsPage = () => {
       distance: 6.9,
       locations: [
         [49.4139684, 8.6106684],
-        [49.4146394, 8.5937568],
-        [49.4141832, 8.6093235],
+        [49.3907245, 8.6763761],
+        [49.4135729, 8.6671083],
       ],
     },
     {
@@ -26,8 +26,8 @@ const StatsPage = () => {
       distance: 2.2,
       locations: [
         [49.4262511, 8.6011362],
-        [49.418155, 8.579548],
-        [49.418155, 8.579548],
+        [49.4144429, 8.6649393],
+        [49.3977534, 8.6590882],
       ],
     },
     {
@@ -36,8 +36,7 @@ const StatsPage = () => {
       distance: 3.4,
       locations: [
         [49.4139474, 8.6098524],
-        [49.4139474, 8.6098524],
-        [49.4014858, 8.503654],
+        [49.3946975, 8.6606386],
       ],
     },
   ]);
@@ -125,7 +124,14 @@ const StatsPage = () => {
               fullscreenControl: false,
             }}
           >
-            <Marker position={{ lat: 49.414183, lng: 8.650915 }} />
+            <Marker
+              position={{ lat: 49.414183, lng: 8.650915 }}
+              icon={{
+                url: baseUrl + "current_pos.svg",
+                scaledSize: { width: 30, height: 30 },
+              }}
+            />
+
             {shopStats[selectedShop].locations.map((location, index) => (
               <Marker
                 key={index}
