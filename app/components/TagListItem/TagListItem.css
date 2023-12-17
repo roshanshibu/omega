@@ -16,18 +16,22 @@
   align-items: center;
   gap: 5px;
   color: #44390b;
+  transition: all 1s;
+}
+.tagItemHeader .checkbox:active {
+  transform: rotate(10deg);
 }
 
 .tagItems {
   align-items: stretch;
   display: grid;
-  gap: 5px;
+  /* gap: 5px; */
   grid-template-columns: 1fr 1fr;
   /* display: flex;
   flex-wrap: wrap; */
   padding: 0 36px;
   color: grey;
-  width: fit-content;
+  width: 100%;
   width: -moz-available;
 }
 /* .tagItems li {
@@ -44,4 +48,19 @@
   opacity: 0;
   margin: 0;
   padding: 0;
+}
+
+.deleteTagContainer{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  color: grey;
+  border: 1px dotted #d8b71f;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+.deleteIcon{
+  height: 36px;
+  width: auto;
 }

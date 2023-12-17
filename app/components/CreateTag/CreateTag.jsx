@@ -125,7 +125,7 @@ const CreateTag = ({createTag}) => {
                                 }
                                 </div>
                             </div>
-                            <button onClick={() => {
+                            <div className="saveTag" onClick={() => {
                                     if(newTagName!="" && newTagItemIds.length != 0){
                                         let tag = {
                                             name: newTagName,
@@ -139,7 +139,7 @@ const CreateTag = ({createTag}) => {
                                     return
                                 }}>
                                 Save Tag
-                            </button>
+                            </div>
                         
                         
                     </>

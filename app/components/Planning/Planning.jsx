@@ -34,6 +34,18 @@ const Planning = ({ hide }) => {
     setTags([newTag, ...tags]);
   };
 
+  const deleteTag = (tagToDelete) => {
+    //update db
+    db.tags.delete(tagToDelete.id)
+
+    let newTags = tags.filter((tag) => {
+      return tag.id != tagToDelete.id
+    })
+    
+    //update state
+    setTags(newTags)
+  }
+
   const itemsContext = useContext(ItemsContext);
 
   useEffect(() => {
@@ -106,6 +118,9 @@ const Planning = ({ hide }) => {
                   unCheckItem={(selectedItem) =>
                     itemsContext.checkUncheckItem(selectedItem, false)
                   }
+                  deleteTag={(tag) => {
+                    deleteTag(tag)
+                  }}
                 />
               ))}
             </>
