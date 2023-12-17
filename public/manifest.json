@@ -4,8 +4,8 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "Omega",
-  "short_name": "Omega",
+  "name": "Lizt",
+  "short_name": "Lizt",
   "description": "Shopping List App",
   "icons": [
     {

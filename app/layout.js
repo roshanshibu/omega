@@ -1,9 +1,9 @@
 import "./globals.css";
 
-const APP_NAME = "Omega";
-const APP_DEFAULT_TITLE = "Omega: Shopping List";
+const APP_NAME = "Lizt";
+const APP_DEFAULT_TITLE = "Lizt: Shopping List";
 const APP_TITLE_TEMPLATE = "%s - Shopping List App";
-const APP_DESCRIPTION = "Project Omega description here";
+const APP_DESCRIPTION = "A small shopping list PWA";
 
 export const metadata = {
   applicationName: APP_NAME,
