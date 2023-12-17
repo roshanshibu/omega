@@ -5,20 +5,47 @@ import "./StatsPage.css";
 import CalendarIcon from "@/assets/Calendar.svg";
 import { useContext, useState } from "react";
 import Image from "next/image";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 const StatsPage = () => {
   const itemsContext = useContext(ItemsContext);
   const [shopStats, setShopStats] = useState([
-    { name: "Edeka", price: 24.5, distance: 1 },
-    { name: "Aldi", price: 27.0, distance: 2 },
-    { name: "Penny", price: 32.4, distance: 4 },
+    {
+      name: "Edeka",
+      price: 24.5,
+      distance: 6.9,
+      locations: [
+        [49.4139684, 8.6106684],
+        [49.4146394, 8.5937568],
+        [49.4141832, 8.6093235],
+      ],
+    },
+    {
+      name: "Aldi",
+      price: 27.0,
+      distance: 2.2,
+      locations: [
+        [49.4262511, 8.6011362],
+        [49.418155, 8.579548],
+        [49.418155, 8.579548],
+      ],
+    },
+    {
+      name: "Penny",
+      price: 32.4,
+      distance: 3.4,
+      locations: [
+        [49.4139474, 8.6098524],
+        [49.4139474, 8.6098524],
+        [49.4014858, 8.503654],
+      ],
+    },
   ]);
   const [selectedShop, setSelectedShop] = useState(0);
 
   const containerStyle = {
     width: "100%",
-    height: "400px",
+    height: "300px",
     borderRadius: "0 0 11px 11px",
   };
 
@@ -98,8 +125,17 @@ const StatsPage = () => {
               fullscreenControl: false,
             }}
           >
-            {/* Child components, such as markers, info windows, etc. */}
-            <></>
+            <Marker position={{ lat: 49.414183, lng: 8.650915 }} />
+            {shopStats[selectedShop].locations.map((location, index) => (
+              <Marker
+                key={index}
+                position={{ lat: location[0], lng: location[1] }}
+                icon={{
+                  url: baseUrl + shopStats[selectedShop].name + ".svg",
+                  scaledSize: { width: 30, height: 30 },
+                }}
+              />
+            ))}
           </GoogleMap>
         ) : (
           <></>
