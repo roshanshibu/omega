@@ -117,7 +117,7 @@ const StatsPage = () => {
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={13}
+            zoom={12}
             options={{
               streetViewControl: false,
               zoomControl: false,
