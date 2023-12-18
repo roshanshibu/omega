@@ -11,6 +11,7 @@ import { daysBetweenDates, getSmallDate, isUnderThreshold } from "./utils/date";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Image from "next/image";
 import emptyBasket from "@/assets/empty-basket.png";
+import qrCode from "@/assets/QRCode.svg";
 
 export const ItemsContext = createContext();
 
@@ -186,6 +187,17 @@ export default function Home() {
             )}
           </div>
           <Planning hide={!isListMode} />
+          <div className="desktopInfo">
+          <p>Lizt works best on mobile.</p>
+              <Image
+                      draggable={false}
+                      src={qrCode}
+                      alt="qr code"
+                      className="qrcode"
+                      width={200}
+                    />
+          <p>Scan the QR Code on your mobile device.</p>
+          </div>
         </ItemsContext.Provider>
       </QueryClientProvider>
     </>
