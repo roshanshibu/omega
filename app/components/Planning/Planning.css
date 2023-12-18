@@ -115,6 +115,9 @@
 }
 /* desktop */
 @media only screen and (min-width: 768px) {
+  .planning{
+    display: none !important;
+  }
   .planning {
     right: 0;
     height: 100vh !important;

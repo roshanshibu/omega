@@ -6,6 +6,10 @@
   flex-direction: column;
 }
 
+.desktopInfo{
+  display: none;
+}
+
 html {
   -webkit-tap-highlight-color: transparent;
 }
@@ -41,4 +45,24 @@ html {
     opacity: 0;
     visibility: hidden;
   }
+}
+
+
+@media only screen and (min-width: 768px) {
+.content{
+  display: none;
+}
+.desktopInfo{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+}
+
+.desktopInfo p{
+  text-align: center;
+  width: 100%;
+}
 }
