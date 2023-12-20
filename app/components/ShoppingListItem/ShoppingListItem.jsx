@@ -14,7 +14,13 @@ const ShoppingListItem = ({
   decreaseQty,
 }) => {
   return (
-    <div className="shoppingListItemContents">
+    <div
+      className="shoppingListItemContents"
+      onBlur={() => {
+        if (showQtyControl) getQtyControl(-1);
+      }}
+      tabIndex={0}
+    >
       <div className="checkListNameContainer" onClick={() => checkItem(item)}>
         <Image
           draggable={false}
