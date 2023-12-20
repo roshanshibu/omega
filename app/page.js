@@ -4,7 +4,7 @@ import Planning from "./components/Planning/Planning";
 import ShoppingList from "./components/ShoppingList/ShoppingList";
 import "./page.css";
 import { useLiveQuery } from "dexie-react-hooks";
-import { addBarCodeData, addCleanDemoData, db } from "./utils/db";
+import { addBarCodeData, db } from "./utils/db";
 import ModeSlider from "./components/ModeSlider/ModeSlider";
 import StatsPage from "./components/StatsPage/StatsPage";
 import { daysBetweenDates, getSmallDate, isUnderThreshold } from "./utils/date";
@@ -122,8 +122,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // remove in prod, for demo only
-    addCleanDemoData();
     addBarCodeData();
 
     db.items.toArray().then((data) => {
@@ -188,15 +186,15 @@ export default function Home() {
           </div>
           <Planning hide={!isListMode} />
           <div className="desktopInfo">
-          <p>Lizt works best on mobile.</p>
-              <Image
-                      draggable={false}
-                      src={qrCode}
-                      alt="qr code"
-                      className="qrcode"
-                      width={200}
-                    />
-          <p>Scan the QR Code on your mobile device.</p>
+            <p>Lizt works best on mobile.</p>
+            <Image
+              draggable={false}
+              src={qrCode}
+              alt="qr code"
+              className="qrcode"
+              width={200}
+            />
+            <p>Scan the QR Code on your mobile device.</p>
           </div>
         </ItemsContext.Provider>
       </QueryClientProvider>
