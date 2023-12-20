@@ -36,15 +36,15 @@ const Planning = ({ hide }) => {
 
   const deleteTag = (tagToDelete) => {
     //update db
-    db.tags.delete(tagToDelete.id)
+    db.tags.delete(tagToDelete.id);
 
     let newTags = tags.filter((tag) => {
-      return tag.id != tagToDelete.id
-    })
-    
+      return tag.id != tagToDelete.id;
+    });
+
     //update state
-    setTags(newTags)
-  }
+    setTags(newTags);
+  };
 
   const itemsContext = useContext(ItemsContext);
 
@@ -119,7 +119,7 @@ const Planning = ({ hide }) => {
                     itemsContext.checkUncheckItem(selectedItem, false)
                   }
                   deleteTag={(tag) => {
-                    deleteTag(tag)
+                    deleteTag(tag);
                   }}
                 />
               ))}
@@ -141,9 +141,7 @@ const Planning = ({ hide }) => {
               ))}
               <p className="planningListTitle">All</p>
               {sortedCheckedItems.map((item, index) =>
-                recommendedItems.includes(item) ? (
-                  <></>
-                ) : (
+                recommendedItems.includes(item) ? null : (
                   <PlanningListItem
                     item={item}
                     key={index}

@@ -53,10 +53,6 @@ const ShoppingList = () => {
       onSortEnd={onSortEnd}
       className="shoppingListContainer"
       draggedItemClassName="dragged"
-      onBlur={() => {
-        setShowQtyControlItem(-1);
-      }}
-      tabIndex={0}
     >
       {itemsContext.items.map((item, index) => (
         <SortableItem key={index}>
