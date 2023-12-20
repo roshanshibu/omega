@@ -56,6 +56,7 @@ const StatsPage = () => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyCf5doKy3tH6cWG09w-fltw7lpnfGkGOwo",
+    // 🤦, this key has been invalidated
   });
 
   const baseUrl =
