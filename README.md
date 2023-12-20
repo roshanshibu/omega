@@ -7,6 +7,13 @@ Lizt - A shopping list webapp
 Install dependencies with `npm install`  
 Run with `npm run dev`
 
+### Notes
+
+- [Items Schema](/notes/Items%20Schema.md)
+- [Items Recommendation](/notes/Item%20Reccomendation.md)
+
+> The google maps API key used in the project has been invalidated till we secure its usage properly.
+
 ---
 
 ### Todo
@@ -60,6 +67,7 @@ Run with `npm run dev`
 - [x] `3` Skeleton loading for items in stats page.
 - [x] `4` Min view with one product and details
 - [x] `5` Max view with three products and details
+- [x] `1` update manifest theme color for status bar color
 - [x] Add valid data in backend
 - [x] Handling for new item on scan
 - [x] Handling for no items in shopping list/planning list
@@ -78,7 +86,6 @@ Run with `npm run dev`
 - [ ] `2` planning section divider fix, use SVGs of corners instead of spacer
 - [ ] `1` lock screen-zooming
 - [ ] `3` Update Item quantity info
-- [x] `1` update manifest theme color for status bar color
 
 - [ ] `4` Bug fixes
   - [x] `4` Search bug - sometimes you need to click twice on search result for it to be checked
