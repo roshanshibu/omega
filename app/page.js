@@ -59,7 +59,7 @@ export default function Home() {
       if (isUnderThreshold(itemLastUnchecked, Date.now(), 2)) {
         // ... do not update lastChecked time
         newTimestamp = selectedItem.lastChecked;
-        console.log("possible accidental toggle, not updating lastChecked");
+        // console.log("possible accidental toggle, not updating lastChecked");
       }
       // if this is a new item, which will not have a last checked time, ignore it
       // otherwise, we can update the averageDuration value

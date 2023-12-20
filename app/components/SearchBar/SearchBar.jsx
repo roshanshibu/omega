@@ -45,7 +45,7 @@ const SearchBar = () => {
       }
     });
     if (!matchFound) {
-      console.log(`going to suggest ${itemName}`);
+      // console.log(`going to suggest ${itemName}`);
       setSearchText(itemName.charAt(0).toUpperCase() + itemName.slice(1));
       setShowSuggestions(true);
     }
@@ -78,10 +78,10 @@ const SearchBar = () => {
           html5QrCode.clear();
         })
         .catch((err) => {
-          console.log(err.message);
+          console.error(err.message);
         });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

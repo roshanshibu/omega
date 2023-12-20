@@ -145,11 +145,11 @@ export const addCleanDemoData = () => {
 };
 
 export const addBarCodeData = () => {
-  console.log("addBarCodeData was called...");
+  // console.log("addBarCodeData was called...");
   // check if there is data in db...
   db.barCodes.toArray().then((data) => {
     if (data.length == 0) {
-      console.log("adding bar codes...");
+      // console.log("adding bar codes...");
       let barCodeData = [
         {
           name: "milk",
@@ -178,9 +178,6 @@ export const addBarCodeData = () => {
           .add({
             ...barCode,
           })
-          .then(() =>
-            console.log(`Added item ${barCode.name} for test and demo`)
-          )
           .catch((error) => {
             // console.log("error in db while creating dummy data:", error);
           });
