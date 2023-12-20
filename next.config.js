@@ -13,7 +13,10 @@ const nextConfig = {
 const withPWA = require("next-pwa")({
   dest: "public",
   register: true,
+  disable: false,
   skipWaiting: true,
+  sw: "sw.js",
+  scope: "/",
   disable: process.env.NODE_ENV === "development",
 });
 
