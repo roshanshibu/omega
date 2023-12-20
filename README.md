@@ -1,6 +1,11 @@
 # Omega
 
-A shopping list webapp
+Lizt - A shopping list webapp
+
+### Build Instructions
+
+Install dependencies with `npm install`  
+Run with `npm run dev`
 
 ---
 
@@ -47,7 +52,7 @@ A shopping list webapp
 - [x] Implement last bought computation logic
   - [x] Store last checked data
   - [x] Store last unchecked datetime
-- [ ] `5` QR Scan to uncheck an item if it is checked
+- [x] `5` QR Scan to uncheck an item if it is checked
 - [x] `5` Implement item average duration computation logic
 - [x] `3` Add recommendation section in planning
 - [x] `1` Stats page api - mocked json backend
@@ -55,7 +60,7 @@ A shopping list webapp
 - [x] `3` Skeleton loading for items in stats page.
 - [x] `4` Min view with one product and details
 - [x] `5` Max view with three products and details
-- [ ] Add valid data in backend
+- [x] Add valid data in backend
 - [x] Handling for new item on scan
 - [x] Handling for no items in shopping list/planning list
 
@@ -73,9 +78,9 @@ A shopping list webapp
 - [ ] `2` planning section divider fix, use SVGs of corners instead of spacer
 - [ ] `1` lock screen-zooming
 - [ ] `3` Update Item quantity info
-- [ ] `1` update manifest theme color for status bar color
+- [x] `1` update manifest theme color for status bar color
 
 - [ ] `4` Bug fixes
-  - [ ] `4` Search bug - sometimes you need to click twice on search result for it to be checked
+  - [x] `4` Search bug - sometimes you need to click twice on search result for it to be checked
     - [x] Following that, all items are listed in the search suggestions
   - [ ] `4` Shopping list reorder bug
