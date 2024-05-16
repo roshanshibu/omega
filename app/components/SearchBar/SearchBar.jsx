@@ -22,7 +22,7 @@ const SearchBar = () => {
   const itemsContext = useContext(ItemsContext);
   useEffect(() => {
     html5QrCode = new Html5Qrcode("reader");
-    getCameras();
+    // getCameras();
     const oldRegion = document.getElementById("qr-shaded-region");
     oldRegion && oldRegion.remove();
 
@@ -152,12 +152,12 @@ const SearchBar = () => {
         }}
       />
       <div id="reader" className={isCameraOn ? "" : "hidden"}></div>
-      <Image
+      {/* <Image
         id="toggleButton"
         src={barCodeIcon}
         onClick={() => toggleCameraOn()}
         alt="barcode icon"
-      />
+      /> */}
 
       {/* <button onClick={getCameras}>Get List of cameras</button>
       {cameraList.length > 0 && (
